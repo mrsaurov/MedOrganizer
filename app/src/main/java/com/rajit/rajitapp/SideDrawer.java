@@ -1,6 +1,7 @@
 package com.rajit.rajitapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
 import com.mikepenz.materialdrawer.Drawer;
@@ -17,30 +18,38 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class SideDrawer {
     Activity activity;
 
-    public static void showDrawer(Activity activity) {
-        //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(1).withName("Groups");
+    public static void showDrawer(final Activity activity) {
 
-//create the drawer and remember the `Drawer` result object
-        Drawer result = new DrawerBuilder()
+        PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
+        PrimaryDrawerItem contactsItem = new PrimaryDrawerItem().withIdentifier(2).withName("Contacts");
+        PrimaryDrawerItem groupsItem = new PrimaryDrawerItem().withIdentifier(3).withName("Groups");
+
+        new DrawerBuilder()
                 .withActivity(activity)
                 .addDrawerItems(
-                        item1,
-                        new DividerDrawerItem(),
-
-                        item2
+                        homeItem,
+                       contactsItem,
+                        groupsItem
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-
-
+                        if(position==0)
+                        {
+                            activity.finish();
+                            activity.startActivity(new Intent(activity, MainActivity.class));
+                        }
+                        else if(position==1)
+                        {
+                            activity.finish();
+                            activity.startActivity(new Intent(activity, ContactsActivity.class));
+                        }
                         return  true;
                     }
                 })
                 .build();
     }
+
 
 
 }
