@@ -1,4 +1,4 @@
-package com.rajit.rajitapp;
+package com.rajit.rajitapp.helpers;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,17 +6,18 @@ import android.view.View;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import com.rajit.rajitapp.activities.ContactsActivity;
+import com.rajit.rajitapp.activities.MainActivity;
 
 /**
  * Created by Nowfel Mashnoor on 3/21/2017.
  */
 
 public class SideDrawer {
-    Activity activity;
+
 
     public static void showDrawer(final Activity activity) {
 
