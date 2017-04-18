@@ -5,11 +5,12 @@ import android.os.Bundle;
 
 import com.saurov.android.R;
 
-public class MainActivity extends Activity {
+
+public class AddMedicationActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_medication);
     }
 }

@@ -1,4 +1,4 @@
-package com.rajit.android;
+package com.saurov.android;
 
 import org.junit.Test;
 
