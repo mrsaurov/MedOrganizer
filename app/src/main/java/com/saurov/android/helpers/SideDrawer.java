@@ -9,16 +9,14 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import com.saurov.android.R;
 import com.saurov.android.activities.MainActivity;
-
+import com.saurov.android.activities.MedicationActivity;
 /**
  * Created by Nowfel Mashnoor on 3/21/2017.
  */
 
 public class SideDrawer {
-
-
-
 
     public static void showDrawer(final Activity activity) {
 
@@ -31,6 +29,7 @@ public class SideDrawer {
 
         new DrawerBuilder()
                 .withActivity(activity)
+
                 .addDrawerItems(
                         homeItem,
                        contactsItem,
@@ -50,6 +49,11 @@ public class SideDrawer {
                         {
                             activity.finish();
                             activity.startActivity(new Intent(activity, MainActivity.class));
+                        }
+                        else if(position==3)
+                        {
+                            activity.finish();
+                            activity.startActivity(new Intent(activity,MedicationActivity.class));
                         }
                         return  true;
                     }

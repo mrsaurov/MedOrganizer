@@ -11,9 +11,7 @@
         android:id="@+id/addMedicationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD MEDICATION"
         android:layout_gravity="center_horizontal"
-        android:onClick=""
-
-        />
+        android:layout_marginTop="30dp"
+        android:text="ADD MEDICATION" />
 </LinearLayout>
