@@ -1,10 +1,10 @@
-package com.rajit.rajitapp.activities;
+package com.saurov.android.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.rajit.rajitapp.R;
-import com.rajit.rajitapp.helpers.SideDrawer;
+import com.rajit.android.R;
+import com.saurov.android.helpers.SideDrawer;
 
 public class MainActivity extends Activity {
 

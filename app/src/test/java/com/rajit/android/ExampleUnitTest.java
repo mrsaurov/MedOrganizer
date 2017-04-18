@@ -1,4 +1,4 @@
-package com.rajit.rajitapp;
+package com.rajit.android;
 
 import org.junit.Test;
 
