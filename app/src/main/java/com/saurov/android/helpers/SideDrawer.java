@@ -18,11 +18,14 @@ import com.saurov.android.activities.MainActivity;
 public class SideDrawer {
 
 
+
+
     public static void showDrawer(final Activity activity) {
 
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
         PrimaryDrawerItem contactsItem = new PrimaryDrawerItem().withIdentifier(2).withName("Contacts");
         PrimaryDrawerItem groupsItem = new PrimaryDrawerItem().withIdentifier(3).withName("Groups");
+        PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(4).withName("Medication");
 
 
 
@@ -31,7 +34,9 @@ public class SideDrawer {
                 .addDrawerItems(
                         homeItem,
                        contactsItem,
-                        groupsItem
+                        groupsItem,
+                        medicationItem
+
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
