@@ -11,19 +11,26 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.saurov.android.R;
+import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.SideDrawer;
 import com.wdullaer.materialdatetimepicker.*;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class AddMedicationActivity extends Activity {
 
     Calendar myCalendar = Calendar.getInstance();
+    EditText medicineName;
     EditText startDate;
+    Button addMedicine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,7 @@ public class AddMedicationActivity extends Activity {
         setContentView(R.layout.activity_add_medication);
         SideDrawer.showDrawer(this);
 
+        ButterKnife.bind(this);
         startDate = (EditText)findViewById(R.id.startDateEditView);
         //startDate.setEnabled(false);
 
@@ -73,4 +81,19 @@ public class AddMedicationActivity extends Activity {
 
         startDate.setText(sdf.format(myCalendar.getTime()));
     }
+
+
+
+    @OnClick(R.id.addMedicineInfo)
+    public void addMedicineInfo(){
+
+        medicineName = (EditText) findViewById(R.id.medNameEditView);
+
+        String medicineNameString =  medicineName.getText().toString();
+
+        Medicine medicine = new Medicine(medicineNameString);
+        medicine.save();
+        Toast.makeText(getApplicationContext(), "Saved Medicine!", Toast.LENGTH_LONG).show();
+    }
+
 }

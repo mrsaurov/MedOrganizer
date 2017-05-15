@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Medication Name"
+            android:textColor="#2f2889"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="66dp" />
@@ -47,6 +48,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="4.15"
                 android:text="Reminder Times"
+                android:textColor="#2f2889"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="66dp" />
@@ -81,6 +83,7 @@
                 android:layout_weight="4.15"
                 android:text="Schedule"
                 android:textAlignment="viewStart"
+                android:textColor="#2f2889"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="66dp" />
@@ -96,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Start Date"
+                    android:textColor="#2f2889"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="66dp" />
 
@@ -120,6 +124,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="4.15"
                 android:text="Duration"
+                android:textColor="#2f2889"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="66dp" />
 
@@ -144,6 +149,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="4.15"
                 android:text="Days"
+                android:textColor="#2f2889"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="66dp" />
 
@@ -162,6 +168,12 @@
             </RadioGroup>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/addMedicineInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD" />
 
 
     </LinearLayout>
