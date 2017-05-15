@@ -20,14 +20,16 @@ public class MedicationActivity extends Activity {
         setContentView(R.layout.activity_medication);
         ButterKnife.bind(this);
         SideDrawer.showDrawer(this);
-
     }
 
     @OnClick(R.id.addMedicationButton)
-    public void add()
-    {
-        Intent i = new Intent(this,AddMedicationActivity.class);
+    public void add(){
+
+        Intent i= new Intent(this,AddMedicationActivity.class);
 
         startActivity(i);
     }
+
+
+
 }

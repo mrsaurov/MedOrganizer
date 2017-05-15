@@ -24,7 +24,7 @@
             tools:layout_editor_absoluteY="66dp" />
 
         <EditText
-            android:id="@+id/medNameTextView"
+            android:id="@+id/medNameEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -100,16 +100,15 @@
                     tools:layout_editor_absoluteY="66dp" />
 
                 <EditText
-                    android:id="@+id/startDateTextView"
+                    android:id="@+id/startDateEditView"
                     android:layout_width="283dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:inputType="date"
                     android:text=""
                     tools:layout_editor_absoluteX="126dp"
                     tools:layout_editor_absoluteY="50dp" />
-
 
 
             </LinearLayout>
@@ -139,7 +138,7 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/durationText"
+                android:id="@+id/daysText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
