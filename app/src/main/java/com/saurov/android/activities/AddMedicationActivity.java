@@ -1,11 +1,6 @@
 package com.saurov.android.activities;
 
 import android.app.Activity;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +14,10 @@ import android.widget.Toast;
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.SideDrawer;
-import com.wdullaer.materialdatetimepicker.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -93,7 +91,7 @@ public class AddMedicationActivity extends Activity {
 
         Medicine medicine = new Medicine(medicineNameString);
         medicine.save();
-        Toast.makeText(getApplicationContext(), "Saved Medicine!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Medicine Saved!", Toast.LENGTH_LONG).show();
     }
 
 }

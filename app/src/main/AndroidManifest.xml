@@ -19,15 +19,30 @@
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.saurov.android" />
 
 
-        <activity android:name="com.saurov.android.activities.MainActivity">
+        <activity
+            android:name="com.saurov.android.activities.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name="com.saurov.android.activities.MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
         <activity android:name="com.saurov.android.activities.MedicationActivity" />
         <activity android:name="com.saurov.android.activities.AddMedicationActivity"></activity>
+
+
+
+
     </application>
 
 </manifest>
