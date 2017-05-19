@@ -2,6 +2,7 @@ package com.saurov.android.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.saurov.android.R;
@@ -28,6 +30,7 @@ public class AddMedicationActivity extends Activity {
     Calendar myCalendar = Calendar.getInstance();
     EditText medicineName;
     EditText startDate;
+    EditText startTime;
     Button addMedicine;
 
     @Override
@@ -38,6 +41,7 @@ public class AddMedicationActivity extends Activity {
 
         ButterKnife.bind(this);
         startDate = (EditText)findViewById(R.id.startDateEditView);
+        startTime = (EditText)findViewById(R.id.startTimeEditView);
         //startDate.setEnabled(false);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -49,7 +53,17 @@ public class AddMedicationActivity extends Activity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
+                updateDateLabel();
+            }
+        };
+
+        final TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+
+                myCalendar.set(Calendar.HOUR,hourOfDay);
+                myCalendar.set(Calendar.MINUTE,minute);
+                updateTimeLabel();
             }
         };
 
@@ -70,14 +84,43 @@ public class AddMedicationActivity extends Activity {
                     }
                 }
         );
+
+
+        startTime.setOnClickListener(
+
+                new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(View view) {
+
+                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                        imm.hideSoftInputFromWindow(startDate.getWindowToken(), 0);
+
+                        new TimePickerDialog(AddMedicationActivity.this,time,myCalendar.get(Calendar.HOUR),
+                                myCalendar.get(Calendar.MINUTE),false).show();
+                    }
+                }
+
+
+        );
     }
 
-    private void updateLabel(){
+
+    private void updateDateLabel(){
 
         String myFormat = "dd-MM-yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         startDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateTimeLabel(){
+
+        String myFormat = "h:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat,Locale.US);
+
+        startTime.setText(sdf.format(myCalendar.getTime()));
     }
 
 

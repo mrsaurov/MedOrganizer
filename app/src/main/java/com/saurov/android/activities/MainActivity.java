@@ -23,6 +23,8 @@ public class MainActivity extends Activity {
 
         ArrayList<String> medicineList = new ArrayList<String>();
 
+        //Medicine.deleteAll(Medicine.class);
+
         for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
             Medicine element = iter.next();
 
