@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AddMedicationActivity extends Activity {
+public class AddMedicationActivity extends Activity{
 
     Calendar myCalendar = Calendar.getInstance();
     EditText medicineName;
@@ -101,15 +101,12 @@ public class AddMedicationActivity extends Activity {
                                 myCalendar.get(Calendar.MINUTE),false).show();
                     }
                 }
-
-
         );
     }
 
-
     private void updateDateLabel(){
 
-        String myFormat = "dd-MM-yyyy"; //In which you need put here
+        String myFormat = "dd-MM-yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         startDate.setText(sdf.format(myCalendar.getTime()));
@@ -122,8 +119,6 @@ public class AddMedicationActivity extends Activity {
 
         startTime.setText(sdf.format(myCalendar.getTime()));
     }
-
-
 
     @OnClick(R.id.addMedicineInfo)
     public void addMedicineInfo(){

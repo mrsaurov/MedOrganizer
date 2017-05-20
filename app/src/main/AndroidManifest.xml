@@ -3,24 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.saurov.android">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name=".StApp"
         android:allowBackup="true"
         android:icon="@mipmap/launcherfinal"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launcherfinal"
         android:supportsRtl="true"
-        tools:replace="android:icon"
-        android:name="com.saurov.android.StApp"
-        android:theme="@style/AppTheme">
-
-        <meta-data android:name="DATABASE" android:value="appdb.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.saurov.android" />
-
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <meta-data
+            android:name="DATABASE"
+            android:value="appdb.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.saurov.android" />
 
         <activity
-            android:name="com.saurov.android.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,21 +39,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-        <activity android:name="com.saurov.android.activities.MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name="com.saurov.android.activities.MedicationActivity" />
-        <activity android:name="com.saurov.android.activities.AddMedicationActivity"></activity>
-
-
-
-
+        <activity android:name=".activities.MedicationActivity" />
+        <activity android:name=".activities.AddMedicationActivity" />
+        <activity android:name=".activities.SignUp"></activity>
     </application>
 
 </manifest>

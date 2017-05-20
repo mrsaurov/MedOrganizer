@@ -11,11 +11,11 @@ public class SplashActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, Login.class);
 
         synchronized (this){
             try {
-                wait(2500);
+                wait(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
