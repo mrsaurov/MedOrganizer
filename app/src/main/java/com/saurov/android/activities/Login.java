@@ -19,7 +19,7 @@ public class Login extends Activity {
     private EditText passwordId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
@@ -48,9 +48,6 @@ public class Login extends Activity {
             Intent i = new Intent(Login.this, SignUp.class);
             startActivity(i);
         }
-
-
-
     }
 
     @OnClick(R.id.toSignUp)

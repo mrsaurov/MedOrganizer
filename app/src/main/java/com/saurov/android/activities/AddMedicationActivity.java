@@ -7,7 +7,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -31,7 +30,6 @@ public class AddMedicationActivity extends Activity{
     EditText medicineName;
     EditText startDate;
     EditText startTime;
-    Button addMedicine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,11 +122,16 @@ public class AddMedicationActivity extends Activity{
     public void addMedicineInfo(){
 
         medicineName = (EditText) findViewById(R.id.medNameEditView);
+        startDate = (EditText) findViewById(R.id.startDateEditView);
+        startTime = (EditText) findViewById(R.id.startTimeEditView);
 
-        String medicineNameString =  medicineName.getText().toString();
+        //String medicineNameString =  medicineName.getText().toString();
 
-        Medicine medicine = new Medicine(medicineNameString);
+        Medicine medicine = new Medicine(medicineName.getText().toString(),
+                startTime.getText().toString(),startDate.getText().toString());
+
         medicine.save();
+
         Toast.makeText(getApplicationContext(), "Medicine Saved!", Toast.LENGTH_LONG).show();
     }
 

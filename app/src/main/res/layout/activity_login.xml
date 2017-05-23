@@ -35,7 +35,8 @@
         android:layout_marginTop="113dp"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/signIn" />
+        app:layout_constraintLeft_toRightOf="@+id/signIn"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <TextView
         android:id="@+id/emailTextView"
@@ -46,11 +47,10 @@
         android:textSize="20sp"
         android:layout_marginStart="8dp"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/emailLogInEditText"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/emailLogInEditText" />
 
     <EditText
         android:id="@+id/passwordLoginEditText"
@@ -82,7 +82,7 @@
         tools:layout_constraintBaseline_creator="1"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="7dp" />
 
     <Button
         android:id="@+id/logInButton"

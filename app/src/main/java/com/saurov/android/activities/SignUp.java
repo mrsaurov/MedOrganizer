@@ -48,6 +48,15 @@ public class SignUp extends Activity {
         }
     }
 
+    @OnClick(R.id.toSignIn)
+    public void toSignInonClick(){
+
+        Intent i = new Intent(getApplicationContext(),Login.class);
+
+        startActivity(i);
+
+    }
+
     public void addUser(){
 
         String emailAddUser = emailId.getText().toString();
@@ -57,6 +66,7 @@ public class SignUp extends Activity {
         User user = new User(userNameAdd,emailAddUser,password,1);
 
         user.save();
+
         Toast.makeText(getApplicationContext(), "User Saved", Toast.LENGTH_LONG).show();
     }
 }

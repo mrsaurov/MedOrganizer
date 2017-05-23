@@ -29,7 +29,4 @@ public class MedicationActivity extends Activity {
 
         startActivity(i);
     }
-
-
-
 }

@@ -4,10 +4,10 @@ import com.orm.SugarRecord;
 
 public class User extends SugarRecord<User> {
 
-    String userName;
-    String email;
-    String password;
-    int isLoggedIn = 0;
+    private String userName;
+    private String email;
+    private String password;
+    private int isLoggedIn = 0;
 
     public User(){};
 
@@ -32,5 +32,9 @@ public class User extends SugarRecord<User> {
 
     public int getIsLoggedIn() {
         return isLoggedIn;
+    }
+
+    public void setIsLoggedIn(int isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
     }
 }

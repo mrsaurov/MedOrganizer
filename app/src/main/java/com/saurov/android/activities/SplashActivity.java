@@ -13,13 +13,14 @@ public class SplashActivity extends Activity {
 
         Intent i = new Intent(this, Login.class);
 
-        synchronized (this){
+       /** synchronized (this){
+
             try {
                 wait(2000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                startActivity(i);
             }
-        }
+        }**/
 
         startActivity(i);
 
