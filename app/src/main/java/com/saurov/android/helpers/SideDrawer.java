@@ -2,24 +2,17 @@ package com.saurov.android.helpers;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryToggleDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
 import com.saurov.android.R;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
 import com.saurov.android.activities.MedicationActivity;
-import com.saurov.android.activities.SignUp;
-import com.saurov.android.database.Medicine;
 import com.saurov.android.database.User;
 
 import java.util.Iterator;

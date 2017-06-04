@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.User;
@@ -68,8 +69,35 @@ public class Login extends Activity {
     @OnClick(R.id.logInButton)
     public void onLogInClick(){
 
+        boolean logInFound = false;
+
         Intent i = new Intent(this,MainActivity.class);
 
-        startActivity(i);
+        //Checking if the log in data is correct
+        try {
+            for(Iterator<User> iter = User.findAll(User.class); iter.hasNext();){
+
+                User user = iter.next();
+
+                if(emailId.getText().toString().equals(user.getEmail())
+                        && passwordId.getText().toString().equals(user.getPassword())){
+                    logInFound = true;
+                    user.setIsLoggedIn(1);
+                    user.save();
+
+                    startActivity(i);
+
+                    break;
+
+                }
+            }
+        } catch (Exception e) {
+
+            Toast.makeText(this,"Invalid Username or Password", Toast.LENGTH_LONG).show();
+        }
+
+        //LogIn credential didn't match
+        if(!logInFound)
+            Toast.makeText(this,"Invalid Username or Password", Toast.LENGTH_LONG).show();
     }
 }

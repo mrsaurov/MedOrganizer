@@ -33,15 +33,18 @@
 
         <activity
             android:name=".activities.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Login" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -50,9 +53,12 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".activities.MedicationActivity" />
-        <activity android:name=".activities.AddMedicationActivity" />
-        <activity android:name=".activities.SignUp"></activity>
+        <activity android:name=".activities.MedicationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.AddMedicationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.SignUp"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

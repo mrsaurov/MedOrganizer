@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
             System.out.println(s);
         }**/
 
+
         ListAdapter medicineListAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,medicineList);
 
         ListView medicineListView = (ListView) findViewById(R.id.medicineListView);
