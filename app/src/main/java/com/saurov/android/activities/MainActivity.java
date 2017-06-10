@@ -29,15 +29,7 @@ public class MainActivity extends Activity {
             Medicine element = iter.next();
 
             medicineList.add(element.getMedicineName());
-            //Log.d("---------", element.getMedicineName());
         }
-
-        /**for (Iterator<String> iter= medicineList.iterator();iter.hasNext();){
-
-            String s = iter.next();
-
-            System.out.println(s);
-        }**/
 
 
         ListAdapter medicineListAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,medicineList);

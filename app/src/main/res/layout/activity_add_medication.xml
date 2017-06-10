@@ -157,6 +157,7 @@
                 tools:layout_editor_absoluteY="66dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupDays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -164,10 +165,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="continuos" />
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="number of days"/>
+                    android:text="number of days" />
             </RadioGroup>
 
             <TextView
@@ -184,14 +186,19 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <RadioButton
+                    android:id="@+id/everyDayRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Every day"/>
+                    android:text="Every day"
+                    android:onClick="onDaysRBClick"/>
                 <RadioButton
+                    android:id="@+id/specificDaysOfWeekRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="specific days of week"/>
+                    android:text="specific days of week"
+                    android:onClick="onDaysRBClick"/>
 
             </RadioGroup>
 
