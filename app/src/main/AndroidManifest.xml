@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:largeHeap="true"
         android:name=".StApp"
         android:allowBackup="true"
         android:icon="@mipmap/launcherfinal"
@@ -59,6 +60,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.SignUp"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.MedicineDetailActivity"/>
     </application>
 
 </manifest>

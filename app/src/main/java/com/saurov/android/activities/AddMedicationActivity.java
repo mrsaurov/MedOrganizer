@@ -48,6 +48,9 @@ public class AddMedicationActivity extends Activity {
     EditText startTime;
     RadioGroup radioGroupDays;
 
+    View popUp;
+    PopupWindow popupWindow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +122,14 @@ public class AddMedicationActivity extends Activity {
                 }
         );
 
+        //Initializing Layout Inflator and PopWindow
+        LayoutInflater layoutInflater = getLayoutInflater();
+
+        popUp = layoutInflater.inflate(R.layout.days_popout, null);
+
+        popupWindow = new PopupWindow(popUp, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+
     }
 
     private void updateDateLabel() {
@@ -146,14 +157,7 @@ public class AddMedicationActivity extends Activity {
             case R.id.specificDaysOfWeekRB:
                 if (checked) {
 
-                    LayoutInflater layoutInflater = getLayoutInflater();
-
-                    final View popUp = layoutInflater.inflate(R.layout.days_popout, null);
-
                     final Button saveButton = (Button) popUp.findViewById(R.id.saveButton);
-
-                    final PopupWindow popupWindow = new PopupWindow(popUp, ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT);
 
                     saveButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -178,8 +182,7 @@ public class AddMedicationActivity extends Activity {
                                 dayIsChecked = dayChoice;
                             }
 
-                           // Toast.makeText(getApplicationContext(), dayIsChecked, Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getApplicationContext(), dayIsChecked, Toast.LENGTH_SHORT).show();
                             popupWindow.dismiss();
                         }
                     });
