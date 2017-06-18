@@ -67,6 +67,8 @@ public class MedicineDetailFragment extends Fragment {
                 medicineItem.delete();
 
                 getActivity().startActivity(i);
+
+                getActivity().finish();
             }
         });
 
@@ -75,7 +77,15 @@ public class MedicineDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"Will implement later!!",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(),EditMedicineActivity.class);
+
+                i.putExtra(MedicineDetailFragment.ARG_MEDICINE_ID, medicineItem.getId());
+
+                getActivity().startActivity(i);
+
+                getActivity().finish();
+
+                //Toast.makeText(getContext(),"Will implement later!!",Toast.LENGTH_SHORT).show();
             }
         });
 

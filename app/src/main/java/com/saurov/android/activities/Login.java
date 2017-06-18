@@ -39,6 +39,8 @@ public class Login extends Activity {
 
                     startActivity(i);
 
+                    this.finish();
+
                     break;
                 }
             }
@@ -86,6 +88,8 @@ public class Login extends Activity {
                     user.save();
 
                     startActivity(i);
+
+                    this.finish();
 
                     break;
 

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
 import com.saurov.android.R;
+import com.saurov.android.helpers.SideDrawer;
 
 //This is the container class for Medicine Detail Fragment
 public class MedicineDetailActivity extends FragmentActivity {
@@ -14,6 +15,7 @@ public class MedicineDetailActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_detail);
+        SideDrawer.showDrawer(this);
 
         Bundle arguments = new Bundle();
 

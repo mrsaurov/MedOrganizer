@@ -21,18 +21,20 @@ import java.util.Iterator;
 
 public class MainActivity extends Activity {
 
+    ListView medicineListView;
+    ArrayAdapter<String> medicineListAdapter;
+    ArrayList<String> medicineList = new ArrayList<String>();
+    ArrayList<Long> medicineId = new ArrayList<Long>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SideDrawer.showDrawer(this);
 
-         final ArrayList<String> medicineList = new ArrayList<String>();
-         final ArrayList<Long> medicineId = new ArrayList<Long>();
-
         //Medicine.deleteAll(Medicine.class);
 
-        for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext();) {
+        for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
             Medicine element = iter.next();
 
             medicineList.add(element.getMedicineName());
@@ -40,9 +42,9 @@ public class MainActivity extends Activity {
         }
 
 
-        ListAdapter medicineListAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,medicineList);
+        medicineListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, medicineList);
 
-        ListView medicineListView = (ListView) findViewById(R.id.medicineListView);
+        medicineListView = (ListView) findViewById(R.id.medicineListView);
 
         medicineListView.setAdapter(medicineListAdapter);
 
@@ -63,5 +65,22 @@ public class MainActivity extends Activity {
                 context.startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        medicineList.clear();
+        medicineId.clear();
+
+        for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
+            Medicine element = iter.next();
+
+            medicineList.add(element.getMedicineName());
+            medicineId.add(element.getId());
+        }
+
+        medicineListAdapter.notifyDataSetChanged();
     }
 }

@@ -54,20 +54,24 @@
                 tools:layout_editor_absoluteY="66dp" />
 
             <RadioGroup
+                android:id="@+id/reminderTimesRB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/onceADayRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="once a day" />
 
                 <RadioButton
+                    android:id="@+id/twiceADayRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="twice a day" />
 
                 <RadioButton
+                    android:id="@+id/thriceADayRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3 times a day" />

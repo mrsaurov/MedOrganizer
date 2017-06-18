@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,9 +48,12 @@ public class AddMedicationActivity extends Activity {
     EditText startDate;
     EditText startTime;
     RadioGroup radioGroupDays;
+    RadioGroup reminderTimes;  ///How many times a day to include reminder
 
     View popUp;
     PopupWindow popupWindow;
+
+    int remainderTimeChoice = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +80,6 @@ public class AddMedicationActivity extends Activity {
             }
         };
 
-        final TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-
-                myCalendar.set(Calendar.HOUR, hourOfDay);
-                myCalendar.set(Calendar.MINUTE, minute);
-                updateTimeLabel();
-            }
-        };
-
         startDate.setOnClickListener(
 
                 new View.OnClickListener() {
@@ -104,6 +98,15 @@ public class AddMedicationActivity extends Activity {
                 }
         );
 
+        final TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+
+                myCalendar.set(Calendar.HOUR, hourOfDay);
+                myCalendar.set(Calendar.MINUTE, minute);
+                updateTimeLabel();
+            }
+        };
 
         startTime.setOnClickListener(
 
@@ -130,6 +133,33 @@ public class AddMedicationActivity extends Activity {
         popupWindow = new PopupWindow(popUp, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
 
+        //Setting listener for Reminder Times a day
+
+
+        reminderTimes = (RadioGroup) findViewById(R.id.reminderTimesRB);
+
+        reminderTimes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                Log.d("TAG", group.getCheckedRadioButtonId() + " " + checkedId);
+
+                switch (checkedId) {
+
+                    case R.id.onceADayRB:
+                        remainderTimeChoice = 1;
+                        break;
+                    case R.id.twiceADayRB:
+                        remainderTimeChoice = 2;
+                        break;
+                    case R.id.thriceADayRB:
+                        remainderTimeChoice = 3;
+                        break;
+                    default:
+                        remainderTimeChoice = -1;
+                }
+            }
+        });
     }
 
     private void updateDateLabel() {
@@ -217,16 +247,25 @@ public class AddMedicationActivity extends Activity {
         //String medicineNameString =  medicineName.getText().toString();
 
         Medicine medicine = new Medicine(medicineName.getText().toString(),
-                startTime.getText().toString(), startDate.getText().toString(),dayIsChecked);
+                startTime.getText().toString(), startDate.getText().toString(), dayIsChecked);
+
+        Log.d("TAG", "Choice: " + remainderTimeChoice);
+
+        if (remainderTimeChoice != -1) {
+            medicine.setReminderTimes(remainderTimeChoice);
+        }
 
         medicine.save();
 
         Toast.makeText(getApplicationContext(), "Medicine Saved!", Toast.LENGTH_LONG).show();
 
-
         finish();
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
 
     }
 
+
+    public int getRemainderTimeChoice() {
+        return remainderTimeChoice;
+    }
 }

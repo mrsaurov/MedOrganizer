@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+//This activity is used for Splash Screen and is the launcher activity of this app
 public class SplashActivity extends Activity {
     @Override
 

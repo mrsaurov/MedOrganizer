@@ -2,12 +2,14 @@ package com.saurov.android.database;
 
 import com.orm.SugarRecord;
 
+//User object class
 public class User extends SugarRecord<User> {
 
     private String userName;
     private String email;
     private String password;
     private int isLoggedIn = 0;
+
 
     public User(){};
 
@@ -17,6 +19,7 @@ public class User extends SugarRecord<User> {
         this.password = password;
         this.isLoggedIn = isLoggedIn;
     }
+
 
     public String getUserName() {
         return userName;
