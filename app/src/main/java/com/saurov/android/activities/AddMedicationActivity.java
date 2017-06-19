@@ -27,8 +27,10 @@ import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.SideDrawer;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -37,6 +39,8 @@ import butterknife.OnClick;
 
 public class AddMedicationActivity extends Activity {
 
+    private static final String TIME_FORMAT = "h:mm a";
+    private static final String DATE_FORMAT = "dd-MM-yyyy";
     //dayisChecked is an boolean string for database management that checks RadioGroup Days
     //for checked radiobuttons
     private static String dayIsChecked = "";
@@ -164,16 +168,14 @@ public class AddMedicationActivity extends Activity {
 
     private void updateDateLabel() {
 
-        String myFormat = "dd-MM-yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.US);
 
         startDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void updateTimeLabel() {
 
-        String myFormat = "h:mm a";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
         startTime.setText(sdf.format(myCalendar.getTime()));
     }
@@ -255,17 +257,70 @@ public class AddMedicationActivity extends Activity {
             medicine.setReminderTimes(remainderTimeChoice);
         }
 
+        String startTimeString = startTime.getText().toString().trim();
+
+        if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
+            handleReminderTimesData(startTimeString, medicine);
+        }
+
         medicine.save();
 
         Toast.makeText(getApplicationContext(), "Medicine Saved!", Toast.LENGTH_LONG).show();
 
+        Log.d("TAG", medicine.getTakeOneTime() + " " + medicine.getTakeTwoTime() + " " + medicine.getTakeThreeTime());
+
         finish();
         startActivity(new Intent(this, MainActivity.class));
-
     }
-
 
     public int getRemainderTimeChoice() {
         return remainderTimeChoice;
+    }
+
+    final public void handleReminderTimesData(String startTimeString, Medicine medicine) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);
+
+        Date date;
+
+        try {
+            date = sdf.parse(startTimeString);
+        } catch (ParseException e) {
+            Toast.makeText(getApplicationContext(), "Invalid Time Input", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+
+        ///Edit and Add Medicine activity can create problem regarding null values
+        ///on take times and startTime
+
+        switch (remainderTimeChoice) {
+
+            case 1:
+                medicine.setTakeTwoTime(null);
+                medicine.setTakeThreeTime(null);
+                medicine.setTakeOneTime(startTimeString);
+                break;
+            case 2:
+                medicine.setTakeTwoTime(null);
+                medicine.setTakeThreeTime(null);
+                medicine.setTakeOneTime(startTimeString);
+                calendar.add(Calendar.HOUR, 12);
+                medicine.setTakeTwoTime(sdf.format(calendar.getTime()));
+                break;
+            case 3:
+                medicine.setTakeTwoTime(null);
+                medicine.setTakeThreeTime(null);
+                medicine.setTakeOneTime(startTimeString);
+                calendar.add(Calendar.HOUR, 8);
+                medicine.setTakeTwoTime(sdf.format(calendar.getTime()));
+                calendar.add(Calendar.HOUR, 8);
+                medicine.setTakeThreeTime(sdf.format(calendar.getTime()));
+                break;
+        }
     }
 }

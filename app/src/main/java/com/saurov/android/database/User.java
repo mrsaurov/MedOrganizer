@@ -10,7 +10,6 @@ public class User extends SugarRecord<User> {
     private String password;
     private int isLoggedIn = 0;
 
-
     public User(){};
 
     public User(String userName, String email, String password, int isLoggedIn) {
