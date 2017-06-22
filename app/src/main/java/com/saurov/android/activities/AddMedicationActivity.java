@@ -43,21 +43,21 @@ public class AddMedicationActivity extends Activity {
     private static final String DATE_FORMAT = "dd-MM-yyyy";
     //dayisChecked is an boolean string for database management that checks RadioGroup Days
     //for checked radiobuttons
-    private static String dayIsChecked = "";
+    public static String dayIsChecked = "";
     //dayID is a array of days from days_popout.xml
-    final int dayID[] = {R.id.saturday, R.id.sunday, R.id.monday, R.id.tuesday, R.id.thursday, R.id.friday};
+    final int dayID[] = {R.id.saturday, R.id.sunday, R.id.monday, R.id.tuesday, R.id.wednesday, R.id.thursday, R.id.friday};
 
     Calendar myCalendar = Calendar.getInstance();
     EditText medicineName;
     EditText startDate;
     EditText startTime;
-    RadioGroup radioGroupDays;
+    //RadioGroup radioGroupDays;
     RadioGroup reminderTimes;  ///How many times a day to include reminder
 
     View popUp;
     PopupWindow popupWindow;
 
-    int remainderTimeChoice = -1;
+    public static int remainderTimeChoice = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +68,13 @@ public class AddMedicationActivity extends Activity {
         ButterKnife.bind(this);
         startDate = (EditText) findViewById(R.id.startDateEditView);
         startTime = (EditText) findViewById(R.id.startTimeEditView);
-        radioGroupDays = (RadioGroup) findViewById(R.id.radioGroupDays);
+        //radioGroupDays = (RadioGroup) findViewById(R.id.radioGroupDays);
         //startDate.setEnabled(false);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -129,7 +127,7 @@ public class AddMedicationActivity extends Activity {
                 }
         );
 
-        //Initializing Layout Inflator and PopWindow
+        //Initializing Layout Inflater and PopWindow
         LayoutInflater layoutInflater = getLayoutInflater();
 
         popUp = layoutInflater.inflate(R.layout.days_popout, null);
@@ -197,7 +195,7 @@ public class AddMedicationActivity extends Activity {
 
                             if (popupWindow.isShowing()) {
 
-                                Log.d("TAG", "inside Button");
+                                //Log.d("TAG", "inside Button");
 
                                 String dayChoice = "";
 
@@ -277,6 +275,8 @@ public class AddMedicationActivity extends Activity {
         return remainderTimeChoice;
     }
 
+
+    //This method is used for auto generating reminder times in days according to remainderTimeChoice
     final public void handleReminderTimesData(String startTimeString, Medicine medicine) {
 
         SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);

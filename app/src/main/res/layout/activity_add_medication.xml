@@ -28,7 +28,6 @@
             android:id="@+id/medNameEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text=""
@@ -123,7 +122,8 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <TextView
                     android:id="@+id/startTimeText"
@@ -149,32 +149,32 @@
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/durationText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="4.15"
-                android:text="Duration"
-                android:textColor="#2f2889"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="66dp" />
+            <!--<TextView-->
+                <!--android:id="@+id/durationText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_weight="4.15"-->
+                <!--android:text="Duration"-->
+                <!--android:textColor="#2f2889"-->
+                <!--tools:layout_editor_absoluteX="32dp"-->
+                <!--tools:layout_editor_absoluteY="66dp" />-->
 
-            <RadioGroup
-                android:id="@+id/radioGroupDays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<RadioGroup-->
+            <!--android:id="@+id/radioGroupDays"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="continuos" />
+            <!--<RadioButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="continuos" />-->
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="number of days" />
-            </RadioGroup>
+            <!--<RadioButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="number of days" />-->
+        <!--</RadioGroup>-->
 
             <TextView
                 android:id="@+id/daysText"
@@ -210,8 +210,11 @@
 
         <Button
             android:id="@+id/addMedicineInfo"
-            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="133dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:text="ADD" />
 
 

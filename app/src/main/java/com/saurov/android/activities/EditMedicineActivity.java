@@ -38,9 +38,11 @@ public class EditMedicineActivity extends AddMedicationActivity {
                 EditText startDate = (EditText) findViewById(R.id.startDateEditView);
                 EditText startTime = (EditText) findViewById(R.id.startTimeEditView);
 
+
                 medicineItem.setMedicineName(medicineName.getText().toString());
                 medicineItem.setStartDate(startDate.getText().toString());
                 medicineItem.setStartTime(startTime.getText().toString());
+                medicineItem.setDayChoice(dayIsChecked);
 
                 if (remainderTimeChoice != -1) {
                     medicineItem.setReminderTimes(getRemainderTimeChoice());

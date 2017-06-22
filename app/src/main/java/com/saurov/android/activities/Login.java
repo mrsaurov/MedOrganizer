@@ -16,6 +16,8 @@ import butterknife.OnClick;
 
 public class Login extends Activity {
 
+    public static final String ARG_USER_ID = "user_id";
+
     private EditText emailId;
     private EditText passwordId;
 
@@ -28,6 +30,7 @@ public class Login extends Activity {
         emailId = (EditText) findViewById(R.id.emailLogInEditText);
         passwordId  = (EditText) findViewById(R.id.passwordLoginEditText);
 
+        //If user didn't sign out after last use then this loop will find the loggedIn User and
         try
         {
             for (Iterator<User> iter = User.findAll(User.class); iter.hasNext(); ) {
@@ -36,6 +39,8 @@ public class Login extends Activity {
                 if(element.getIsLoggedIn()==1){
 
                     Intent i = new Intent(this,MainActivity.class);
+
+                    i.putExtra(ARG_USER_ID, element.getId());
 
                     startActivity(i);
 
@@ -86,6 +91,8 @@ public class Login extends Activity {
                     logInFound = true;
                     user.setIsLoggedIn(1);
                     user.save();
+
+                    i.putExtra(ARG_USER_ID, user.getId());
 
                     startActivity(i);
 

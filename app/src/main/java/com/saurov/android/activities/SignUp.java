@@ -18,6 +18,8 @@ public class SignUp extends Activity {
     private EditText emailId;
     private EditText passwordId;
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,11 @@ public class SignUp extends Activity {
 
             addUser();
 
+            i.putExtra(Login.ARG_USER_ID,user.getId());
+
             startActivity(i);
+
+            finish();
         }
     }
 
@@ -54,7 +60,6 @@ public class SignUp extends Activity {
         Intent i = new Intent(getApplicationContext(),Login.class);
 
         startActivity(i);
-
     }
 
     public void addUser(){
@@ -63,7 +68,7 @@ public class SignUp extends Activity {
         String password = passwordId.getText().toString();
         String userNameAdd = userName.getText().toString();
 
-        User user = new User(userNameAdd,emailAddUser,password,1);
+        user = new User(userNameAdd,emailAddUser,password,1);
 
         user.save();
 

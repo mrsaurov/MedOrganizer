@@ -20,7 +20,7 @@ public class MedicineDetailFragment extends Fragment {
     public static final String ARG_MEDICINE_ID = "medicine_id";
     ImageButton deleteButton;
     ImageButton editButton;
-    TextView startDate;
+    TextView daysToTakeMed;
     TextView startTime;
     TextView medicineName;
 
@@ -50,13 +50,13 @@ public class MedicineDetailFragment extends Fragment {
         editButton = (ImageButton) rootView.findViewById(R.id.editImageButtonFragment);
 
         medicineName = (TextView) rootView.findViewById(R.id.medicineNameFragment);
-        startDate = (TextView) rootView.findViewById(R.id.startDateFragment);
+        daysToTakeMed = (TextView) rootView.findViewById(R.id.daysToTakeMedFragment);
         startTime = (TextView) rootView.findViewById(R.id.startTimeFragment);
 
         //Setting start date and time text
         medicineName.setText(medicineItem.getMedicineName());
         startTime.setText(medicineItem.getStartTime());
-        startDate.setText(medicineItem.getStartDate());
+        daysToTakeMed.setText(medicineItem.daysToTakeMedicineRetriever());
 
         //Delete Image Button Listener
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -91,4 +91,5 @@ public class MedicineDetailFragment extends Fragment {
 
         return rootView;
     }
+
 }

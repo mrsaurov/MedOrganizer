@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 //This activity shows Medicine List
 
@@ -26,20 +28,27 @@ public class MainActivity extends Activity {
     ArrayList<String> medicineList = new ArrayList<String>();
     ArrayList<Long> medicineId = new ArrayList<Long>();
 
+    public static long loggedInUserId = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Getting the looged in User id
+        if (getIntent().hasExtra(Login.ARG_USER_ID))
+            loggedInUserId = getIntent().getLongExtra(Login.ARG_USER_ID, 0);
+
         SideDrawer.showDrawer(this);
 
-        //Medicine.deleteAll(Medicine.class);
-
-        for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
-            Medicine element = iter.next();
-
-            medicineList.add(element.getMedicineName());
-            medicineId.add(element.getId());
-        }
+        //Moved ListView Population Logic to onResume
+//
+//        for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
+//            Medicine element = iter.next();
+//
+//            medicineList.add(element.getMedicineName());
+//            medicineId.add(element.getId());
+//        }
 
 
         medicineListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, medicineList);
@@ -70,6 +79,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        Log.d("TAG", "insideOnResume");
 
         medicineList.clear();
         medicineId.clear();

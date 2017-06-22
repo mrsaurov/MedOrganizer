@@ -1,5 +1,7 @@
 package com.saurov.android.database;
 
+import android.util.Log;
+
 import com.orm.SugarRecord;
 
 //Medicine Object Class
@@ -30,10 +32,6 @@ public class Medicine extends SugarRecord<Medicine> {
         this.medicineName = medicineName;
         this.startTime = startTime;
         this.startDate = startDate;
-        this.dayChoice = dayChoice;
-    }
-
-    public void setDayChoice(String dayChoice) {
         this.dayChoice = dayChoice;
     }
 
@@ -69,27 +67,69 @@ public class Medicine extends SugarRecord<Medicine> {
         this.reminderTimes = reminderTimes;
     }
 
-    public void setTakeOneTime(String takeOneTime) {
-        this.takeOneTime = takeOneTime;
-    }
-
-    public void setTakeTwoTime(String takeTwoTime) {
-        this.takeTwoTime = takeTwoTime;
-    }
-
-    public void setTakeThreeTime(String takeThreeTime) {
-        this.takeThreeTime = takeThreeTime;
-    }
-
     public String getTakeOneTime() {
         return takeOneTime;
+    }
+
+    public void setTakeOneTime(String takeOneTime) {
+        this.takeOneTime = takeOneTime;
     }
 
     public String getTakeTwoTime() {
         return takeTwoTime;
     }
 
+    public void setTakeTwoTime(String takeTwoTime) {
+        this.takeTwoTime = takeTwoTime;
+    }
+
     public String getTakeThreeTime() {
         return takeThreeTime;
+    }
+
+    public void setTakeThreeTime(String takeThreeTime) {
+        this.takeThreeTime = takeThreeTime;
+    }
+
+    public String getDayChoice() {
+        return dayChoice;
+    }
+
+    public void setDayChoice(String dayChoice) {
+        this.dayChoice = dayChoice;
+    }
+
+    public String daysToTakeMedicineRetriever() {
+
+
+        Log.d("Medicine", "Length: " + dayChoice.length() + "Daychoice: " + dayChoice);
+
+        String result = "";
+
+        if (dayChoice.equals("")) {
+            result = "Not Specified";
+            return result;
+        }
+        if (dayChoice.equals("1111111")) {
+            result = "Everyday";
+            return result;
+        }
+
+        String[] days = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+
+        //Bug Here !!Will fix later
+        for (int i = 0; i < dayChoice.length(); i++) {
+
+            if (dayChoice.charAt(i) == '1') {
+                result += days[i];
+
+                if (i != 6) {
+                    result += ", ";
+                }
+
+            }
+        }
+
+        return result;
     }
 }

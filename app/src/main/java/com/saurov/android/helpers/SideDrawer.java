@@ -5,10 +5,17 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.orm.SugarRecord;
 import com.saurov.android.R;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
@@ -19,50 +26,47 @@ import java.util.Iterator;
 
 public class SideDrawer {
 
+
     public static void showDrawer(final Activity activity) {
 
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medication").withIcon(R.drawable.medication);
-        PrimaryDrawerItem logOutitem = new PrimaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(R.drawable.log_out);
+        //PrimaryDrawerItem logOutitem = new PrimaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(R.drawable.log_out);
 
 
-        new DrawerBuilder()
+        DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(activity)
-
                 .addDrawerItems(
                         homeItem,
-                       //contactsItem,
+                        //contactsItem,
                         //groupsItem,
-                        medicationItem,
-                        logOutitem
-
+                        medicationItem
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if(position==0)
-                        {
+                        if (drawerItem.getIdentifier() == 1) {
                             activity.finish();
                             activity.startActivity(new Intent(activity, MainActivity.class));
-                        }
-                        else if(position==1)
-                        {
+                        } else if (drawerItem.getIdentifier() == 2) {
                             activity.finish();
-                            activity.startActivity(new Intent(activity,MedicationActivity.class));
+                            activity.startActivity(new Intent(activity, MedicationActivity.class));
                         }
-                        else if(position == 2)
+                        /*else if(drawerItem.getIdentifier() ==  3)
                         {
 
                             try
                             {
                                 for (Iterator<User> iter = User.findAll(User.class); iter.hasNext(); ) {
 
-                                    Toast.makeText(activity,"Clicked",Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(activity,"Clicked",Toast.LENGTH_LONG).show();
                                     User element = iter.next();
 
                                     if(element.getIsLoggedIn()==1){
 
                                         element.setIsLoggedIn(0);
+
+                                        MainActivity.loggedInUserId = -1;
 
                                         element.save();
 
@@ -81,11 +85,76 @@ public class SideDrawer {
                                 Intent i = new Intent(activity, Login.class);
                                 activity.startActivity(i);
                             }
-                        }
+                        }*/
 
-                        return  true;
+                        return true;
                     }
-                })
-                .build();
+                });
+
+        if (MainActivity.loggedInUserId != -1) {
+
+            User user = User.findById(User.class, MainActivity.loggedInUserId);
+
+            AccountHeader headerResult = new AccountHeaderBuilder()
+                    .withActivity(activity)
+                    .addProfiles(
+                            new ProfileDrawerItem().withName(user.getUserName()).withEmail(user.getEmail())
+                                    .withIcon(R.drawable.account_icon_default),
+                            new ProfileSettingDrawerItem().withIdentifier(3).withName("Manage Account").withIcon(GoogleMaterial.Icon.gmd_settings),
+                            new ProfileSettingDrawerItem().withIdentifier(4).withName("Log Out").withIcon(R.drawable.log_out)
+                    )
+                    .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                        @Override
+                        public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                            if (profile != null && profile instanceof IDrawerItem) {
+
+                                if (profile.getIdentifier() == 3)
+                                    Toast.makeText(activity, "Will Implement Later!!", Toast.LENGTH_SHORT).show();
+
+                                if (profile.getIdentifier() == 4) {
+
+                                    try {
+                                        for (Iterator<User> iter = User.findAll(User.class); iter.hasNext(); ) {
+
+                                            //Toast.makeText(activity,"Clicked",Toast.LENGTH_LONG).show();
+                                            User element = iter.next();
+
+                                            if (element.getIsLoggedIn() == 1) {
+
+                                                element.setIsLoggedIn(0);
+
+                                                MainActivity.loggedInUserId = -1;
+
+                                                element.save();
+
+                                                Intent i = new Intent(activity, Login.class);
+
+                                                activity.finish();
+                                                activity.startActivity(i);
+
+                                                break;
+                                            }
+                                        }
+
+                                    } catch (Exception e) {
+                                        Intent i = new Intent(activity, Login.class);
+                                        activity.startActivity(i);
+                                    }
+                                }
+                            }
+
+                            return true;
+                        }
+                    })
+                    .withHeaderBackground(R.drawable.account_header_image)
+                    .build();
+
+            builder.withAccountHeader(headerResult)
+                    .build();
+        } else {
+
+            builder.build();
+        }
+
     }
 }
