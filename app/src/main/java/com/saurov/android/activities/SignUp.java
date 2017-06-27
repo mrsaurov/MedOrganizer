@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.User;
+import com.saurov.android.helpers.MySharedPreference;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,7 +47,9 @@ public class SignUp extends Activity {
 
             addUser();
 
-            i.putExtra(Login.ARG_USER_ID,user.getId());
+            MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+
+            //i.putExtra(Login.ARG_USER_ID,user.getId());
 
             startActivity(i);
 
@@ -55,7 +58,7 @@ public class SignUp extends Activity {
     }
 
     @OnClick(R.id.toSignIn)
-    public void toSignInonClick(){
+    public void toSignInOnClick(){
 
         Intent i = new Intent(getApplicationContext(),Login.class);
 

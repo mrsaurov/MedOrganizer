@@ -26,7 +26,6 @@ public class Medicine extends SugarRecord<Medicine> {
     public Medicine() {
     }
 
-    ;
 
     public Medicine(String medicineName, String startTime, String startDate, String dayChoice) {
         this.medicineName = medicineName;
@@ -100,9 +99,6 @@ public class Medicine extends SugarRecord<Medicine> {
     }
 
     public String daysToTakeMedicineRetriever() {
-
-
-        Log.d("Medicine", "Length: " + dayChoice.length() + "Daychoice: " + dayChoice);
 
         String result = "";
 

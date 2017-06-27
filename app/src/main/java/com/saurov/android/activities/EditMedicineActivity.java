@@ -14,7 +14,6 @@ import com.saurov.android.database.Medicine;
 //This class inherits from AddMedicationActivity and is called from medicine detail fragment for editing Medicine Data
 public class EditMedicineActivity extends AddMedicationActivity {
 
-    Button editButton;
     private Medicine medicineItem;
 
     @Override
@@ -54,14 +53,14 @@ public class EditMedicineActivity extends AddMedicationActivity {
                 ///Edit and Add Medicine activity can create problem regarding null values
                 ///on take times and startTime
 
-                if (!startTimeString.isEmpty() && remainderTimeChoice!=-1) {
+                if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
                     handleReminderTimesData(startTimeString, medicineItem);
                 }
 
 
                 medicineItem.save();
 
-                Log.d("TAG","Edit reminderTimes: "+medicineItem.getReminderTimes());
+                Log.d("TAG", "Edit reminderTimes: " + medicineItem.getReminderTimes());
 
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
 

@@ -58,8 +58,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.AddMedicationActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.SignUp"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.SignUp"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.MedicineDetailActivity"/>
         <activity android:name=".activities.EditMedicineActivity"/>
     </application>

@@ -94,7 +94,7 @@
             android:id="@+id/deleteImageButtonFragment"
             android:layout_width="53dp"
             android:layout_height="53dp"
-            android:background="@drawable/recycle_bin_icon"
+            android:background="@drawable/recycle_bin_icon_red"
             android:layout_gravity="center"
             android:layout_marginLeft="90dp"
             android:layout_marginRight="30dp"/>

@@ -1,30 +1,26 @@
 package com.saurov.android.activities;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
+import com.saurov.android.dialogs.SelectDaysDialogFragment;
 import com.saurov.android.helpers.SideDrawer;
 
 import java.text.ParseException;
@@ -37,25 +33,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AddMedicationActivity extends Activity {
+public class AddMedicationActivity extends FragmentActivity {
 
     private static final String TIME_FORMAT = "h:mm a";
     private static final String DATE_FORMAT = "dd-MM-yyyy";
-    //dayisChecked is an boolean string for database management that checks RadioGroup Days
+    //dayIsChecked is an boolean string for database management that checks RadioGroup Days
     //for checked radiobuttons
     public static String dayIsChecked = "";
-    //dayID is a array of days from days_popout.xml
-    final int dayID[] = {R.id.saturday, R.id.sunday, R.id.monday, R.id.tuesday, R.id.wednesday, R.id.thursday, R.id.friday};
 
     Calendar myCalendar = Calendar.getInstance();
     EditText medicineName;
     EditText startDate;
     EditText startTime;
-    //RadioGroup radioGroupDays;
+    RadioGroup radioGroupDays;
     RadioGroup reminderTimes;  ///How many times a day to include reminder
-
-    View popUp;
-    PopupWindow popupWindow;
 
     public static int remainderTimeChoice = -1;
 
@@ -68,8 +59,6 @@ public class AddMedicationActivity extends Activity {
         ButterKnife.bind(this);
         startDate = (EditText) findViewById(R.id.startDateEditView);
         startTime = (EditText) findViewById(R.id.startTimeEditView);
-        //radioGroupDays = (RadioGroup) findViewById(R.id.radioGroupDays);
-        //startDate.setEnabled(false);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -127,18 +116,8 @@ public class AddMedicationActivity extends Activity {
                 }
         );
 
-        //Initializing Layout Inflater and PopWindow
-        LayoutInflater layoutInflater = getLayoutInflater();
-
-        popUp = layoutInflater.inflate(R.layout.days_popout, null);
-
-        popupWindow = new PopupWindow(popUp, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-
-        //Setting listener for Reminder Times a day
-
-
         reminderTimes = (RadioGroup) findViewById(R.id.reminderTimesRB);
+        radioGroupDays = (RadioGroup) findViewById(R.id.dayChoiceRB);
 
         reminderTimes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -162,7 +141,25 @@ public class AddMedicationActivity extends Activity {
                 }
             }
         });
+
+        //This radioGroupHandles Day Selection
+        radioGroupDays.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+
+                    case R.id.everyDayRB:
+                        dayIsChecked = "1111111";
+                        break;
+                    case R.id.specificDaysOfWeekRB:
+                        DialogFragment selectDaysFragment = new SelectDaysDialogFragment();
+
+                        selectDaysFragment.show(getSupportFragmentManager(), "day_choice");
+                }
+            }
+        });
     }
+
 
     private void updateDateLabel() {
 
@@ -178,63 +175,6 @@ public class AddMedicationActivity extends Activity {
         startTime.setText(sdf.format(myCalendar.getTime()));
     }
 
-    //Checking for Days RadioButton selections
-    public void onDaysRBClick(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()) {
-
-            case R.id.specificDaysOfWeekRB:
-                if (checked) {
-
-                    final Button saveButton = (Button) popUp.findViewById(R.id.saveButton);
-
-                    saveButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            if (popupWindow.isShowing()) {
-
-                                //Log.d("TAG", "inside Button");
-
-                                String dayChoice = "";
-
-                                for (int i = 0; i < dayID.length; i++) {
-
-                                    CheckBox checkBox = (CheckBox) popUp.findViewById(dayID[i]);
-
-                                    if (checkBox.isChecked())
-                                        dayChoice = dayChoice.concat("1");
-                                    else
-                                        dayChoice = dayChoice.concat("0");
-                                }
-
-                                dayIsChecked = dayChoice;
-                            }
-
-                            Toast.makeText(getApplicationContext(), dayIsChecked, Toast.LENGTH_SHORT).show();
-                            popupWindow.dismiss();
-                        }
-                    });
-
-                    popupWindow.setFocusable(true);
-                    popupWindow.setTouchable(true);
-
-                    popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
-
-                }
-                //Toast.makeText(getApplicationContext(),"Sp",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.everyDayRB:
-                if (checked) {
-                    dayIsChecked = "1111111";
-                }
-                break;
-            default:
-                Toast.makeText(getApplicationContext(), "Nothing Is Cheked!", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 
     //Adding medicine to database
     @OnClick(R.id.addMedicineInfo)

@@ -189,20 +189,19 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/dayChoiceRB">
 
                 <RadioButton
                     android:id="@+id/everyDayRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Every day"
-                    android:onClick="onDaysRBClick"/>
+                    android:text="Every day" />
                 <RadioButton
                     android:id="@+id/specificDaysOfWeekRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="specific days of week"
-                    android:onClick="onDaysRBClick"/>
+                    android:text="specific days of week" />
 
             </RadioGroup>
 

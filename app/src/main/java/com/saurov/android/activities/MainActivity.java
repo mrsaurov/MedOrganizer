@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.saurov.android.R;
@@ -17,7 +16,6 @@ import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 //This activity shows Medicine List
 
@@ -25,19 +23,19 @@ public class MainActivity extends Activity {
 
     ListView medicineListView;
     ArrayAdapter<String> medicineListAdapter;
-    ArrayList<String> medicineList = new ArrayList<String>();
-    ArrayList<Long> medicineId = new ArrayList<Long>();
+    ArrayList<String> medicineList = new ArrayList<>();
+    ArrayList<Long> medicineId = new ArrayList<>();
 
-    public static long loggedInUserId = -1;
+    //public static long loggedInUserId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Getting the looged in User id
-        if (getIntent().hasExtra(Login.ARG_USER_ID))
-            loggedInUserId = getIntent().getLongExtra(Login.ARG_USER_ID, 0);
+        //Getting the logged in User id
+        //if (getIntent().hasExtra(Login.ARG_USER_ID))
+          //  loggedInUserId = getIntent().getLongExtra(Login.ARG_USER_ID, 0);
 
         SideDrawer.showDrawer(this);
 
@@ -51,7 +49,7 @@ public class MainActivity extends Activity {
 //        }
 
 
-        medicineListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, medicineList);
+        medicineListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, medicineList);
 
         medicineListView = (ListView) findViewById(R.id.medicineListView);
 

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.User;
+import com.saurov.android.helpers.MySharedPreference;
 
 import java.util.Iterator;
 
@@ -16,7 +17,7 @@ import butterknife.OnClick;
 
 public class Login extends Activity {
 
-    public static final String ARG_USER_ID = "user_id";
+    // --Commented out by Inspection (27-Jun-17 8:47 AM):public static final String ARG_USER_ID = "user_id";
 
     private EditText emailId;
     private EditText passwordId;
@@ -40,7 +41,11 @@ public class Login extends Activity {
 
                     Intent i = new Intent(this,MainActivity.class);
 
-                    i.putExtra(ARG_USER_ID, element.getId());
+
+                    //Saving current user data
+                    MySharedPreference mySharedPreference = new MySharedPreference(this, element.getId());
+
+                    //i.putExtra(ARG_USER_ID, element.getId());
 
                     startActivity(i);
 
@@ -92,7 +97,10 @@ public class Login extends Activity {
                     user.setIsLoggedIn(1);
                     user.save();
 
-                    i.putExtra(ARG_USER_ID, user.getId());
+                    //Saving current user data
+                    MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+
+                    //i.putExtra(ARG_USER_ID, user.getId());
 
                     startActivity(i);
 

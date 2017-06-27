@@ -15,7 +15,6 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.orm.SugarRecord;
 import com.saurov.android.R;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
@@ -31,7 +30,12 @@ public class SideDrawer {
 
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medication").withIcon(R.drawable.medication);
-        //PrimaryDrawerItem logOutitem = new PrimaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(R.drawable.log_out);
+
+        final MySharedPreference mySharedPreference = new MySharedPreference(activity);
+
+        long currentLoggedInUserId = mySharedPreference.getCurrentUserId();
+
+        //PrimaryDrawerItem logOutItem = new PrimaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(R.drawable.log_out);
 
 
         DrawerBuilder builder = new DrawerBuilder()
@@ -52,48 +56,15 @@ public class SideDrawer {
                             activity.finish();
                             activity.startActivity(new Intent(activity, MedicationActivity.class));
                         }
-                        /*else if(drawerItem.getIdentifier() ==  3)
-                        {
-
-                            try
-                            {
-                                for (Iterator<User> iter = User.findAll(User.class); iter.hasNext(); ) {
-
-                                    //Toast.makeText(activity,"Clicked",Toast.LENGTH_LONG).show();
-                                    User element = iter.next();
-
-                                    if(element.getIsLoggedIn()==1){
-
-                                        element.setIsLoggedIn(0);
-
-                                        MainActivity.loggedInUserId = -1;
-
-                                        element.save();
-
-                                        Intent i = new Intent(activity,Login.class);
-
-                                        activity.finish();
-                                        activity.startActivity(i);
-
-                                        break;
-                                    }
-                                }
-
-                            }
-                            catch (Exception e)
-                            {
-                                Intent i = new Intent(activity, Login.class);
-                                activity.startActivity(i);
-                            }
-                        }*/
-
                         return true;
                     }
                 });
 
-        if (MainActivity.loggedInUserId != -1) {
 
-            User user = User.findById(User.class, MainActivity.loggedInUserId);
+
+        if (currentLoggedInUserId!=-1) {
+
+            User user = User.findById(User.class, currentLoggedInUserId);
 
             AccountHeader headerResult = new AccountHeaderBuilder()
                     .withActivity(activity)
@@ -123,7 +94,9 @@ public class SideDrawer {
 
                                                 element.setIsLoggedIn(0);
 
-                                                MainActivity.loggedInUserId = -1;
+                                                mySharedPreference.setCurrentUserId(-1);
+
+                                                //MainActivity.loggedInUserId = -1;
 
                                                 element.save();
 

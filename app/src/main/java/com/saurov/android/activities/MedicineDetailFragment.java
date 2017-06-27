@@ -3,16 +3,17 @@ package com.saurov.android.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
+import com.saurov.android.dialogs.DeleteMedicineDialogFragment;
 
 
 public class MedicineDetailFragment extends Fragment {
@@ -37,7 +38,7 @@ public class MedicineDetailFragment extends Fragment {
 
         long medicineId = getArguments().getLong(ARG_MEDICINE_ID);
 
-        medicineItem = Medicine.findById(Medicine.class,medicineId);
+        medicineItem = Medicine.findById(Medicine.class, medicineId);
 
     }
 
@@ -62,13 +63,18 @@ public class MedicineDetailFragment extends Fragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),MainActivity.class);
+                //Intent i = new Intent(getContext(),MainActivity.class);
 
-                medicineItem.delete();
 
-                getActivity().startActivity(i);
+                //Creating a alert dialog fragment
+                DialogFragment deleteDialogFragment = new DeleteMedicineDialogFragment();
 
-                getActivity().finish();
+                //Passing the medicineId to alert dialog to handle delete
+                //Flow of medicine data MainActivity-->MedicineDetailFragment-->DeleteMedicineDialogFragment
+                deleteDialogFragment.setArguments(getArguments());
+
+
+                deleteDialogFragment.show(getFragmentManager(), "delete medicine");
             }
         });
 
@@ -77,7 +83,7 @@ public class MedicineDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getContext(),EditMedicineActivity.class);
+                Intent i = new Intent(getContext(), EditMedicineActivity.class);
 
                 i.putExtra(MedicineDetailFragment.ARG_MEDICINE_ID, medicineItem.getId());
 
@@ -85,7 +91,6 @@ public class MedicineDetailFragment extends Fragment {
 
                 getActivity().finish();
 
-                //Toast.makeText(getContext(),"Will implement later!!",Toast.LENGTH_SHORT).show();
             }
         });
 
