@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -33,7 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AddMedicationActivity extends FragmentActivity {
+public class AddMedicationActivity extends FragmentActivity implements SelectDaysDialogFragment.OnDaySelectionDataPassListener {
 
     private static final String TIME_FORMAT = "h:mm a";
     private static final String DATE_FORMAT = "dd-MM-yyyy";
@@ -262,5 +261,10 @@ public class AddMedicationActivity extends FragmentActivity {
                 medicine.setTakeThreeTime(sdf.format(calendar.getTime()));
                 break;
         }
+    }
+
+    @Override
+    public void OnDaySelectionDataPass(String daySelection) {
+        dayIsChecked = daySelection;
     }
 }

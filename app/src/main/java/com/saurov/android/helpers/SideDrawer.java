@@ -31,9 +31,9 @@ public class SideDrawer {
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medication").withIcon(R.drawable.medication);
 
-        final MySharedPreference mySharedPreference = new MySharedPreference(activity);
+        //final MySharedPreference mySharedPreference = new MySharedPreference(activity);
 
-        long currentLoggedInUserId = mySharedPreference.getCurrentUserId();
+        long currentLoggedInUserId = MySharedPreference.getCurrentUserId(activity);
 
         //PrimaryDrawerItem logOutItem = new PrimaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(R.drawable.log_out);
 
@@ -94,7 +94,7 @@ public class SideDrawer {
 
                                                 element.setIsLoggedIn(0);
 
-                                                mySharedPreference.setCurrentUserId(-1);
+                                                MySharedPreference.setCurrentUserId(activity,-1);
 
                                                 //MainActivity.loggedInUserId = -1;
 

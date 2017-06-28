@@ -43,7 +43,8 @@ public class Login extends Activity {
 
 
                     //Saving current user data
-                    MySharedPreference mySharedPreference = new MySharedPreference(this, element.getId());
+                    //MySharedPreference mySharedPreference = new MySharedPreference(this, element.getId());
+                    MySharedPreference.setCurrentUserId(this, element.getId());
 
                     //i.putExtra(ARG_USER_ID, element.getId());
 
@@ -98,7 +99,8 @@ public class Login extends Activity {
                     user.save();
 
                     //Saving current user data
-                    MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+                    //MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+                    MySharedPreference.setCurrentUserId(this, user.getId());
 
                     //i.putExtra(ARG_USER_ID, user.getId());
 

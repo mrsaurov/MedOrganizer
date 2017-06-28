@@ -47,7 +47,8 @@ public class SignUp extends Activity {
 
             addUser();
 
-            MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+            //MySharedPreference mySharedPreference = new MySharedPreference(this, user.getId());
+            MySharedPreference.setCurrentUserId(this, user.getId());
 
             //i.putExtra(Login.ARG_USER_ID,user.getId());
 
