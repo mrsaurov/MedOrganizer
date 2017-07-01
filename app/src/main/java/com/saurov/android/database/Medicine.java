@@ -4,6 +4,10 @@ import android.util.Log;
 
 import com.orm.SugarRecord;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 //Medicine Object Class
 public class Medicine extends SugarRecord<Medicine> {
 
@@ -15,9 +19,9 @@ public class Medicine extends SugarRecord<Medicine> {
 
     //This 3 data are represents time of day when medication will be taken
     //Will dynamically add
-    private String takeOneTime;
-    private String takeTwoTime;
-    private String takeThreeTime;
+    private String timeOneToTakeMed;
+    private String timeTwoToTakeMed;
+    private String timeTheeToTakeMed;
 
     //Serious question!! what happens if take time falls between two days of week???
     //Will handle it later :)
@@ -66,36 +70,24 @@ public class Medicine extends SugarRecord<Medicine> {
         this.reminderTimes = reminderTimes;
     }
 
-    public String getTakeOneTime() {
-        return takeOneTime;
-    }
-
-    public void setTakeOneTime(String takeOneTime) {
-        this.takeOneTime = takeOneTime;
-    }
-
-    public String getTakeTwoTime() {
-        return takeTwoTime;
-    }
-
-    public void setTakeTwoTime(String takeTwoTime) {
-        this.takeTwoTime = takeTwoTime;
-    }
-
-    public String getTakeThreeTime() {
-        return takeThreeTime;
-    }
-
-    public void setTakeThreeTime(String takeThreeTime) {
-        this.takeThreeTime = takeThreeTime;
-    }
-
     public String getDayChoice() {
         return dayChoice;
     }
 
     public void setDayChoice(String dayChoice) {
         this.dayChoice = dayChoice;
+    }
+
+    public void setTimeOneToTakeMed(String timeOneToTakeMed) {
+        this.timeOneToTakeMed = timeOneToTakeMed;
+    }
+
+    public void setTimeTwoToTakeMed(String timeTwoToTakeMed) {
+        this.timeTwoToTakeMed = timeTwoToTakeMed;
+    }
+
+    public void setTimeTheeToTakeMed(String timeTheeToTakeMed) {
+        this.timeTheeToTakeMed = timeTheeToTakeMed;
     }
 
     public String daysToTakeMedicineRetriever() {
@@ -123,6 +115,26 @@ public class Medicine extends SugarRecord<Medicine> {
                     result += ", ";
                 }
 
+            }
+        }
+
+        return result;
+    }
+
+    public String timesToTakeMedicineRetriever(){
+
+        String result = "";
+
+        List<String> timeData = Arrays.asList(timeOneToTakeMed,timeTwoToTakeMed,timeTheeToTakeMed);
+
+        for(int i=0;i<timeData.size();i++){
+
+            if(timeData.get(i) != null){
+                result+= timeData.get(i);
+            }
+
+            if(i!=2 && timeData.get(i+1) != null){
+                result+=", ";
             }
         }
 

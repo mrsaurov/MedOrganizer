@@ -22,7 +22,7 @@ public class MedicineDetailFragment extends Fragment {
     ImageButton deleteButton;
     ImageButton editButton;
     TextView daysToTakeMed;
-    TextView startTime;
+    TextView reminderTimes;
     TextView medicineName;
 
     private Medicine medicineItem;
@@ -33,13 +33,11 @@ public class MedicineDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //Initializing medicineItem To be Displayed Here
 
         long medicineId = getArguments().getLong(ARG_MEDICINE_ID);
 
         medicineItem = Medicine.findById(Medicine.class, medicineId);
-
     }
 
     @Nullable
@@ -52,11 +50,11 @@ public class MedicineDetailFragment extends Fragment {
 
         medicineName = (TextView) rootView.findViewById(R.id.medicineNameFragment);
         daysToTakeMed = (TextView) rootView.findViewById(R.id.daysToTakeMedFragment);
-        startTime = (TextView) rootView.findViewById(R.id.startTimeFragment);
+        reminderTimes = (TextView) rootView.findViewById(R.id.remiderTimeFragment);
 
         //Setting start date and time text
         medicineName.setText(medicineItem.getMedicineName());
-        startTime.setText(medicineItem.getStartTime());
+        reminderTimes.setText(medicineItem.timesToTakeMedicineRetriever());
         daysToTakeMed.setText(medicineItem.daysToTakeMedicineRetriever());
 
         //Delete Image Button Listener

@@ -53,16 +53,17 @@ public class EditMedicineActivity extends AddMedicationActivity {
                 ///Edit and Add Medicine activity can create problem regarding null values
                 ///on take times and startTime
 
-                if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
-                    handleReminderTimesData(startTimeString, medicineItem);
-                }
+                //if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
+                // handleReminderTimesData(startTimeString, medicineItem);
+                //}
 
+                //Adding editited time data to medicineItem
+                insertMedicineTakeTimesToDatabase(medicineItem);
 
+                //
                 medicineItem.save();
 
-                Log.d("TAG", "Edit reminderTimes: " + medicineItem.getReminderTimes());
-
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(EditMedicineActivity.this, MainActivity.class);
 
                 startActivity(i);
 

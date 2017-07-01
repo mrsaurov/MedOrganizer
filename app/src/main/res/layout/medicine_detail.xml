@@ -68,14 +68,14 @@
         android:padding="20dp">
 
         <TextView
-            android:layout_width="85dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="Start Time:"
+            android:text="Reminder Times: "
             android:textColor="@color/myBlueText"/>
 
         <TextView
-            android:id="@+id/startTimeFragment"
+            android:id="@+id/remiderTimeFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"

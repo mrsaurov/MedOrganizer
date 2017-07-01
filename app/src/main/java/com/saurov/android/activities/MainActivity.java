@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        Log.d("TAG", "insideOnResume");
+        //Log.d("TAG", "insideOnResume");
 
         medicineList.clear();
         medicineId.clear();

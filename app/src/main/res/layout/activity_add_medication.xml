@@ -78,6 +78,24 @@
 
             </RadioGroup>
 
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:id="@+id/timeListViewParent">-->
+
+                <ListView
+                    android:id="@+id/timePickerListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="23.52"></ListView>
+
+            <!--</LinearLayout>-->
+
+
+
+
             <TextView
                 android:id="@+id/scheduleText"
                 android:layout_width="wrap_content"
