@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.saurov.android.NotificationService;
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.SideDrawer;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent i = new Intent(MainActivity.this, NotificationService.class);
+        startService(i);
         //Getting the logged in User id
         //if (getIntent().hasExtra(Login.ARG_USER_ID))
           //  loggedInUserId = getIntent().getLongExtra(Login.ARG_USER_ID, 0);

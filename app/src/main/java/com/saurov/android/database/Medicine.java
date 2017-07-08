@@ -140,4 +140,16 @@ public class Medicine extends SugarRecord<Medicine> {
 
         return result;
     }
+
+    public String getTimeOneToTakeMed() {
+        return timeOneToTakeMed;
+    }
+
+    public String getTimeTwoToTakeMed() {
+        return timeTwoToTakeMed;
+    }
+
+    public String getTimeTheeToTakeMed() {
+        return timeTheeToTakeMed;
+    }
 }

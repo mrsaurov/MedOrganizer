@@ -41,8 +41,8 @@ import butterknife.OnClick;
 
 public class AddMedicationActivity extends FragmentActivity implements SelectDaysDialogFragment.OnDaySelectionDataPassListener {
 
-    private static final String TIME_FORMAT = "h:mm a";
-    private static final String DATE_FORMAT = "dd-MM-yyyy";
+    public static final String TIME_FORMAT = "h:mm a";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     //dayIsChecked is an boolean string for database management that checks RadioGroup Days
     //for checked radiobuttons
     public static String dayIsChecked = "";
