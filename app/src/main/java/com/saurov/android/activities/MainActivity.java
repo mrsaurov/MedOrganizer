@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.saurov.android.NotificationService;
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
+import com.saurov.android.helpers.CustomMedicineListAdapter;
 import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
@@ -23,11 +24,9 @@ import java.util.Iterator;
 public class MainActivity extends Activity {
 
     ListView medicineListView;
-    ArrayAdapter<String> medicineListAdapter;
+    CustomMedicineListAdapter medicineListAdapter;
     ArrayList<String> medicineList = new ArrayList<>();
     ArrayList<Long> medicineId = new ArrayList<>();
-
-    //public static long loggedInUserId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +50,7 @@ public class MainActivity extends Activity {
 //            medicineId.add(element.getId());
 //        }
 
-
-        medicineListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, medicineList);
+        medicineListAdapter = new CustomMedicineListAdapter(this, medicineList);
 
         medicineListView = (ListView) findViewById(R.id.medicineListView);
 

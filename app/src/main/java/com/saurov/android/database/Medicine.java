@@ -27,6 +27,7 @@ public class Medicine extends SugarRecord<Medicine> {
     //Will handle it later :)
 
 
+
     public Medicine() {
     }
 

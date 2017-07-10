@@ -61,9 +61,11 @@ public class SignUp extends Activity {
     @OnClick(R.id.toSignIn)
     public void toSignInOnClick(){
 
-        Intent i = new Intent(getApplicationContext(),Login.class);
+        Intent i = new Intent(this,Login.class);
 
         startActivity(i);
+
+        finish();
     }
 
     public void addUser(){
