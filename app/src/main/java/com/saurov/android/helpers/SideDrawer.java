@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.saurov.android.R;
+import com.saurov.android.activities.DoctorActivity;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
 import com.saurov.android.activities.MedicationActivity;
@@ -29,7 +30,8 @@ public class SideDrawer {
     public static void showDrawer(final Activity activity) {
 
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
-        PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medication").withIcon(R.drawable.medication);
+        PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medications").withIcon(R.drawable.medication);
+        PrimaryDrawerItem doctorItem = new PrimaryDrawerItem().withIdentifier(100).withName("Doctors").withIcon(GoogleMaterial.Icon.gmd_folder_person);
 
         //final MySharedPreference mySharedPreference = new MySharedPreference(activity);
 
@@ -42,9 +44,8 @@ public class SideDrawer {
                 .withActivity(activity)
                 .addDrawerItems(
                         homeItem,
-                        //contactsItem,
-                        //groupsItem,
-                        medicationItem
+                        medicationItem,
+                        doctorItem
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -55,6 +56,9 @@ public class SideDrawer {
                         } else if (drawerItem.getIdentifier() == 2) {
                             activity.finish();
                             activity.startActivity(new Intent(activity, MedicationActivity.class));
+                        } else if(drawerItem.getIdentifier() == 100){
+                            activity.finish();
+                            activity.startActivity(new Intent(activity, DoctorActivity.class));
                         }
                         return true;
                     }

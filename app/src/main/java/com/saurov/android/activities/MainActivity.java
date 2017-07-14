@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SideDrawer.showDrawer(this);
 
         FloatingActionButton addMedicationFAB = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
@@ -47,7 +48,6 @@ public class MainActivity extends Activity {
         Intent i = new Intent(MainActivity.this, NotificationService.class);
         startService(i);
 
-        SideDrawer.showDrawer(this);
 
         //Moved ListView Population Logic to onResume
 //

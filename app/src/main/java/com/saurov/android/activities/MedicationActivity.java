@@ -3,6 +3,7 @@ package com.saurov.android.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.saurov.android.R;
 import com.saurov.android.helpers.SideDrawer;
@@ -20,6 +21,8 @@ public class MedicationActivity extends Activity {
         setContentView(R.layout.activity_medication);
         ButterKnife.bind(this);
         SideDrawer.showDrawer(this);
+
+        EditText editText = new EditText(this);
     }
 
     @OnClick(R.id.addMedicationButton)

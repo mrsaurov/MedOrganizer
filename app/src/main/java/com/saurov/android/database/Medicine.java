@@ -29,9 +29,8 @@ public class Medicine extends SugarRecord<Medicine> {
     }
 
 
-    public Medicine(String medicineName, String startTime, String startDate, String dayChoice, long userId) {
+    public Medicine(String medicineName, String startDate, String dayChoice, long userId) {
         this.medicineName = medicineName;
-        this.startTime = startTime;
         this.startDate = startDate;
         this.dayChoice = dayChoice;
         this.userId = userId;

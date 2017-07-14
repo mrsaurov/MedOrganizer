@@ -35,19 +35,16 @@ public class EditMedicineActivity extends AddMedicationActivity {
             public void onClick(View v) {
                 EditText medicineName = (EditText) findViewById(R.id.medNameEditView);
                 EditText startDate = (EditText) findViewById(R.id.startDateEditView);
-                EditText startTime = (EditText) findViewById(R.id.startTimeEditView);
 
 
                 medicineItem.setMedicineName(medicineName.getText().toString());
                 medicineItem.setStartDate(startDate.getText().toString());
-                medicineItem.setStartTime(startTime.getText().toString());
                 medicineItem.setDayChoice(dayIsChecked);
 
                 if (remainderTimeChoice != -1) {
                     medicineItem.setReminderTimes(getRemainderTimeChoice());
                 }
 
-                String startTimeString = startTime.getText().toString().trim();
 
 
                 ///Edit and Add Medicine activity can create problem regarding null values

@@ -44,6 +44,7 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
 
     public static final String TIME_FORMAT = "h:mm a";
     public static final String DATE_FORMAT = "dd-MM-yyyy";
+
     //dayIsChecked is an boolean string for database management that checks RadioGroup Days
     //for checked radiobuttons
     public static String dayIsChecked = "";
@@ -51,9 +52,9 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
     Calendar myCalendar = Calendar.getInstance();
     EditText medicineName;
     EditText startDate;
-    EditText startTime;
     RadioGroup radioGroupDays;
     RadioGroup reminderTimes;  ///How many times a day to include reminder
+
     private CustomTimeListAdapter customTimeListAdapter;
     private ListView timePickerList;
     private List<String> timeData;
@@ -66,7 +67,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
 
         ButterKnife.bind(this);
         startDate = (EditText) findViewById(R.id.startDateEditView);
-        startTime = (EditText) findViewById(R.id.startTimeEditView);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -97,32 +97,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
                 }
         );
 
-        final TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-
-                myCalendar.set(Calendar.HOUR, hourOfDay);
-                myCalendar.set(Calendar.MINUTE, minute);
-                updateTimeLabel();
-            }
-        };
-
-        startTime.setOnClickListener(
-
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                        imm.hideSoftInputFromWindow(startDate.getWindowToken(), 0);
-
-                        new TimePickerDialog(AddMedicationActivity.this, time, myCalendar.get(Calendar.HOUR),
-                                myCalendar.get(Calendar.MINUTE), false).show();
-                    }
-                }
-        );
 
         reminderTimes = (RadioGroup) findViewById(R.id.reminderTimesRB);
         radioGroupDays = (RadioGroup) findViewById(R.id.dayChoiceRB);
@@ -250,13 +224,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
         startDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    private void updateTimeLabel() {
-
-        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);
-
-        startTime.setText(sdf.format(myCalendar.getTime()));
-    }
-
     ///method for adding timeData to medicineItem...always called from addMedicineInfo()
     public void insertMedicineTakeTimesToDatabase(Medicine medicine){
 
@@ -276,12 +243,10 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
 
         medicineName = (EditText) findViewById(R.id.medNameEditView);
         startDate = (EditText) findViewById(R.id.startDateEditView);
-        startTime = (EditText) findViewById(R.id.startTimeEditView);
 
         //String medicineNameString =  medicineName.getText().toString();
 
-        Medicine medicine = new Medicine(medicineName.getText().toString(),
-                startTime.getText().toString(), startDate.getText().toString(), dayIsChecked,
+        Medicine medicine = new Medicine(medicineName.getText().toString(), startDate.getText().toString(), dayIsChecked,
                 MySharedPreference.getCurrentUserId(this));
 
         Log.d("TAG", "Choice: " + remainderTimeChoice);
@@ -289,9 +254,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
         if (remainderTimeChoice != -1) {
             medicine.setReminderTimes(remainderTimeChoice);
         }
-
-        String startTimeString = startTime.getText().toString().trim();
-
 
         //if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
           //  handleReminderTimesData(startTimeString, medicine);

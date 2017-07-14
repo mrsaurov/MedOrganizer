@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".StApp"
@@ -25,7 +25,7 @@
             android:value="appdb.db" />
         <meta-data
             android:name="VERSION"
-            android:value="5" />
+            android:value="6" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -72,11 +72,14 @@
         <service
             android:name=".helpers.NotificationService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
+        <service
+            android:name=".helpers.NotificationActionHandler"
+            android:exported="false" />
 
-        <service android:name=".helpers.NotificationActionHandler"
-            android:exported="false"/>
-
+        <activity android:name=".activities.DoctorActivity" />
+        <activity android:name=".activities.AddDoctorActivity" />
+        <activity android:name=".activities.DoctorDetailActivity"></activity>
     </application>
 
 </manifest>
