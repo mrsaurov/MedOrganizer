@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.saurov.android.NotificationService;
+import com.saurov.android.helpers.MySharedPreference;
+import com.saurov.android.helpers.NotificationService;
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.CustomMedicineListAdapter;
@@ -33,11 +33,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FloatingActionButton addMedicationFAB = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        addMedicationFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AddMedicationActivity.class);
+
+                startActivity(i);
+            }
+        });
+
         Intent i = new Intent(MainActivity.this, NotificationService.class);
         startService(i);
-        //Getting the logged in User id
-        //if (getIntent().hasExtra(Login.ARG_USER_ID))
-          //  loggedInUserId = getIntent().getLongExtra(Login.ARG_USER_ID, 0);
 
         SideDrawer.showDrawer(this);
 
@@ -79,16 +87,16 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        //Log.d("TAG", "insideOnResume");
-
         medicineList.clear();
         medicineId.clear();
 
         for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
             Medicine element = iter.next();
 
-            medicineList.add(element.getMedicineName());
-            medicineId.add(element.getId());
+            if(element.getUserId()== MySharedPreference.getCurrentUserId(this)){
+                medicineList.add(element.getMedicineName());
+                medicineId.add(element.getId());
+            }
         }
 
         medicineListAdapter.notifyDataSetChanged();

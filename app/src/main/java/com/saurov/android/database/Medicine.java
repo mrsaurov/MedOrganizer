@@ -1,10 +1,8 @@
 package com.saurov.android.database;
 
-import android.util.Log;
-
 import com.orm.SugarRecord;
+import com.saurov.android.helpers.MySharedPreference;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,8 +21,7 @@ public class Medicine extends SugarRecord<Medicine> {
     private String timeTwoToTakeMed;
     private String timeTheeToTakeMed;
 
-    //Serious question!! what happens if take time falls between two days of week???
-    //Will handle it later :)
+    private long userId;
 
 
 
@@ -32,11 +29,12 @@ public class Medicine extends SugarRecord<Medicine> {
     }
 
 
-    public Medicine(String medicineName, String startTime, String startDate, String dayChoice) {
+    public Medicine(String medicineName, String startTime, String startDate, String dayChoice, long userId) {
         this.medicineName = medicineName;
         this.startTime = startTime;
         this.startDate = startDate;
         this.dayChoice = dayChoice;
+        this.userId = userId;
     }
 
     public String getMedicineName() {
@@ -122,20 +120,20 @@ public class Medicine extends SugarRecord<Medicine> {
         return result;
     }
 
-    public String timesToTakeMedicineRetriever(){
+    public String timesToTakeMedicineRetriever() {
 
         String result = "";
 
-        List<String> timeData = Arrays.asList(timeOneToTakeMed,timeTwoToTakeMed,timeTheeToTakeMed);
+        List<String> timeData = Arrays.asList(timeOneToTakeMed, timeTwoToTakeMed, timeTheeToTakeMed);
 
-        for(int i=0;i<timeData.size();i++){
+        for (int i = 0; i < timeData.size(); i++) {
 
-            if(timeData.get(i) != null){
-                result+= timeData.get(i);
+            if (timeData.get(i) != null) {
+                result += timeData.get(i);
             }
 
-            if(i!=2 && timeData.get(i+1) != null){
-                result+=", ";
+            if (i != 2 && timeData.get(i + 1) != null) {
+                result += ", ";
             }
         }
 
@@ -152,5 +150,9 @@ public class Medicine extends SugarRecord<Medicine> {
 
     public String getTimeTheeToTakeMed() {
         return timeTheeToTakeMed;
+    }
+
+    public long getUserId() {
+        return userId;
     }
 }

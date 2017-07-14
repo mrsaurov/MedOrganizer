@@ -25,6 +25,7 @@ import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.dialogs.SelectDaysDialogFragment;
 import com.saurov.android.helpers.CustomTimeListAdapter;
+import com.saurov.android.helpers.MySharedPreference;
 import com.saurov.android.helpers.SideDrawer;
 
 import java.text.ParseException;
@@ -280,7 +281,8 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
         //String medicineNameString =  medicineName.getText().toString();
 
         Medicine medicine = new Medicine(medicineName.getText().toString(),
-                startTime.getText().toString(), startDate.getText().toString(), dayIsChecked);
+                startTime.getText().toString(), startDate.getText().toString(), dayIsChecked,
+                MySharedPreference.getCurrentUserId(this));
 
         Log.d("TAG", "Choice: " + remainderTimeChoice);
 
