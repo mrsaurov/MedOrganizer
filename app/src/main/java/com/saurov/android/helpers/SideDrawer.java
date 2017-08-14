@@ -20,6 +20,7 @@ import com.saurov.android.activities.DoctorActivity;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
 import com.saurov.android.activities.MedicationActivity;
+import com.saurov.android.activities.MedicineHistoryActivity;
 import com.saurov.android.database.User;
 
 import java.util.Iterator;
@@ -32,6 +33,7 @@ public class SideDrawer {
         PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medications").withIcon(R.drawable.medication);
         PrimaryDrawerItem doctorItem = new PrimaryDrawerItem().withIdentifier(100).withName("Doctors").withIcon(GoogleMaterial.Icon.gmd_folder_person);
+        PrimaryDrawerItem historyItem = new PrimaryDrawerItem().withIdentifier(101).withName("History").withIcon(GoogleMaterial.Icon.gmd_cloud_circle);
 
         //final MySharedPreference mySharedPreference = new MySharedPreference(activity);
 
@@ -45,7 +47,8 @@ public class SideDrawer {
                 .addDrawerItems(
                         homeItem,
                         medicationItem,
-                        doctorItem
+                        doctorItem,
+                        historyItem
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -59,6 +62,9 @@ public class SideDrawer {
                         } else if(drawerItem.getIdentifier() == 100){
                             activity.finish();
                             activity.startActivity(new Intent(activity, DoctorActivity.class));
+                        } else if (drawerItem.getIdentifier() == 101) {
+                            activity.finish();
+                            activity.startActivity(new Intent(activity, MedicineHistoryActivity.class));
                         }
                         return true;
                     }

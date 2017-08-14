@@ -3,7 +3,6 @@ package com.saurov.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,8 +22,6 @@ public class EditDoctorActivity extends AddDoctorActivity {
         final long doctorId = getIntent().getLongExtra(DoctorDetailFragment.ARG_DOCTOR_ID, 0);
 
         doctorItem = Doctor.findById(Doctor.class, doctorId);
-
-        Log.d("DOC", doctorId + "doc id" + doctorItem.getDoctorEmail());
 
         doctorName.setText(doctorItem.getDoctorName());
         doctorSpeciality.setText(doctorItem.getSpeciality());

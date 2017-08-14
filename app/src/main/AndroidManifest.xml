@@ -48,8 +48,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activities.MedicationActivity"
             android:screenOrientation="portrait" />
@@ -72,8 +71,9 @@
 
         <activity android:name=".activities.DoctorActivity" />
         <activity android:name=".activities.AddDoctorActivity" />
-        <activity android:name=".activities.DoctorDetailActivity"></activity>
+        <activity android:name=".activities.DoctorDetailActivity" />
         <activity android:name=".activities.EditDoctorActivity" />
+        <activity android:name=".activities.MedicineHistoryActivity"></activity>
     </application>
 
 </manifest>

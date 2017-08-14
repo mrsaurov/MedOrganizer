@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.saurov.android.helpers.MySharedPreference;
-import com.saurov.android.helpers.NotificationService;
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.CustomMedicineListAdapter;
+import com.saurov.android.helpers.MySharedPreference;
+import com.saurov.android.helpers.NotificationService;
 import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
             Medicine element = iter.next();
 
-            if(element.getUserId()== MySharedPreference.getCurrentUserId(this)){
+            if (element.getUserId() == MySharedPreference.getCurrentUserId(this)) {
                 medicineList.add(element.getMedicineName());
                 medicineId.add(element.getId());
             }
