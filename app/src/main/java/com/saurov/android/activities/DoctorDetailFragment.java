@@ -1,7 +1,6 @@
 package com.saurov.android.activities;
 
 import android.content.Intent;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -15,9 +14,7 @@ import android.widget.TextView;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Doctor;
-import com.saurov.android.database.Medicine;
 import com.saurov.android.dialogs.DeleteDoctorDialogFragment;
-import com.saurov.android.dialogs.DeleteMedicineDialogFragment;
 
 
 public class DoctorDetailFragment extends Fragment {
@@ -89,11 +86,16 @@ public class DoctorDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Intent i = new Intent(getContext(), EditDoctorActivity.class);
+
+                i.putExtra(ARG_DOCTOR_ID, doctorItem.getId());
+
+                getActivity().startActivity(i);
+
+                getActivity().finish();
             }
         });
 
         return rootView;
-
-
     }
 }

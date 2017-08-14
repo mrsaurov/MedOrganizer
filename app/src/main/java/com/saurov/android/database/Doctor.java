@@ -25,22 +25,6 @@ public class Doctor extends SugarRecord<Doctor> {
         this.address = address;
     }
 
-    public void setDoctorEmail(String doctorEmail) {
-        this.doctorEmail = doctorEmail;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Doctor() {
     }
 
@@ -52,19 +36,40 @@ public class Doctor extends SugarRecord<Doctor> {
         return doctorName;
     }
 
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
     public String getDoctorEmail() {
+
         return doctorEmail;
+    }
+
+    public void setDoctorEmail(String doctorEmail) {
+        this.doctorEmail = doctorEmail;
     }
 
     public String getSpeciality() {
         return speciality;
     }
 
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
     public String getContactNumber() {
         return contactNumber;
     }
 
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

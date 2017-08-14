@@ -83,7 +83,7 @@ public class MedicineDetailFragment extends Fragment {
 
                 Intent i = new Intent(getContext(), EditMedicineActivity.class);
 
-                i.putExtra(MedicineDetailFragment.ARG_MEDICINE_ID, medicineItem.getId());
+                i.putExtra(ARG_MEDICINE_ID, medicineItem.getId());
 
                 getActivity().startActivity(i);
 

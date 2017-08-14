@@ -1,9 +1,8 @@
 package com.saurov.android.activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,14 +15,14 @@ import com.saurov.android.helpers.SideDrawer;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddDoctorActivity extends Activity {
+public class AddDoctorActivity extends FragmentActivity {
 
-    private EditText doctorName;
-    private EditText doctorSpeciality;
-    private EditText doctorEmail;
-    private EditText doctorContactNo;
-    private EditText doctorAdress;
-    private Button saveDoctorButton;
+    protected EditText doctorName;
+    protected EditText doctorSpeciality;
+    protected EditText doctorEmail;
+    protected EditText doctorContactNo;
+    protected EditText doctorAdress;
+    protected Button saveDoctorButton;
 
 
     @Override
