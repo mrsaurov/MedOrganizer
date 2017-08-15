@@ -1,6 +1,8 @@
 package com.saurov.android.activities;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +15,12 @@ import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.CustomMedicineListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
+import com.saurov.android.helpers.NotificationIntentService;
 import com.saurov.android.helpers.NotificationService;
 import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 //This activity shows Medicine List
@@ -45,8 +49,23 @@ public class MainActivity extends Activity {
             }
         });
 
-        Intent i = new Intent(MainActivity.this, NotificationService.class);
-        startService(i);
+
+        ///Firing up the notification service
+
+//        Intent i = new Intent(MainActivity.this, NotificationService.class);
+//        startService(i);
+
+        Intent myIntent = new Intent(this, NotificationIntentService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this,  0, myIntent, 0);
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        //calendar.add(Calendar.SECOND, 60); // first time
+        long frequency= 60 * 1000; // in ms
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), frequency, pendingIntent);
+
+
 
 
         //Moved ListView Population Logic to onResume

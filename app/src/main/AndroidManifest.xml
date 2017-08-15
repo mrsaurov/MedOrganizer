@@ -25,7 +25,7 @@
             android:value="appdb.db" />
         <meta-data
             android:name="VERSION"
-            android:value="7" />
+            android:value="8" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -48,7 +48,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.MedicationActivity"
             android:screenOrientation="portrait" />
@@ -73,7 +73,11 @@
         <activity android:name=".activities.AddDoctorActivity" />
         <activity android:name=".activities.DoctorDetailActivity" />
         <activity android:name=".activities.EditDoctorActivity" />
-        <activity android:name=".activities.MedicineHistoryActivity"></activity>
+        <activity android:name=".activities.MedicineHistoryActivity" />
+
+        <service
+            android:name=".helpers.NotificationIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

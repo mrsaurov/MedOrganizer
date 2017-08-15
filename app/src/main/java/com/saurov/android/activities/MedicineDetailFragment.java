@@ -21,6 +21,7 @@ public class MedicineDetailFragment extends Fragment {
     public static final String ARG_MEDICINE_ID = "medicine_id";
     ImageButton deleteButton;
     ImageButton editButton;
+    ImageButton historyButton;
     TextView daysToTakeMed;
     TextView reminderTimes;
     TextView medicineName;
@@ -47,6 +48,7 @@ public class MedicineDetailFragment extends Fragment {
 
         deleteButton = (ImageButton) rootView.findViewById(R.id.deleteImageButtonFragment);
         editButton = (ImageButton) rootView.findViewById(R.id.editImageButtonFragment);
+        historyButton = (ImageButton) rootView.findViewById(R.id.historyImageButtonFragment);
 
         medicineName = (TextView) rootView.findViewById(R.id.medicineNameFragment);
         daysToTakeMed = (TextView) rootView.findViewById(R.id.daysToTakeMedFragment);
@@ -92,7 +94,22 @@ public class MedicineDetailFragment extends Fragment {
             }
         });
 
+        //History of the medicine
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getContext(), MedicineHistoryActivity.class);
+
+                i.putExtra(ARG_MEDICINE_ID, medicineItem.getId());
+
+                getActivity().startActivity(i);
+
+                getActivity().finish();
+
+            }
+        });
+
         return rootView;
     }
-
 }

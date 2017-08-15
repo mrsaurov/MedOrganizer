@@ -15,8 +15,10 @@ import com.saurov.android.activities.MainActivity;
 import com.saurov.android.database.Medicine;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.logging.Handler;
 
 public class NotificationService extends Service {
 
@@ -24,11 +26,97 @@ public class NotificationService extends Service {
 
     private static boolean isNotificationShowing = false;
 
+
     public NotificationService() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+//        android.os.Handler handler = new android.os.Handler();
+//
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(AddMedicationActivity.TIME_FORMAT, Locale.US);
+//
+//                StringBuilder stringBuilder;
+//
+//                //while (true)
+//                //{
+//                    stringBuilder = new StringBuilder("");
+//
+//                    String currentTime = simpleDateFormat.format(System.currentTimeMillis());
+//
+//                    Log.d("--------", currentTime);
+//
+//                    for(Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext();){
+//
+//                        Medicine medicineItem = iter.next();
+//
+//                        switch (medicineItem.getReminderTimes()){
+//
+//                            case 1:
+//                                if(currentTime.equals(medicineItem.getTimeOneToTakeMed())){
+//
+//                                    stringBuilder.append(medicineItem.getMedicineName()+" ");
+//
+//                                    medicineIdForNotification.add(medicineItem.getId());
+//                                }
+//                                break;
+//                            case 2:
+//                                if(currentTime.equals(medicineItem.getTimeOneToTakeMed())||
+//                                        currentTime.equals(medicineItem.getTimeTwoToTakeMed())
+//                                        ){
+//
+//                                    stringBuilder.append(medicineItem.getMedicineName()+" ");
+//
+//                                    medicineIdForNotification.add(medicineItem.getId());
+//
+//                                }
+//                                break;
+//                            case 3:
+//                                if(currentTime.equals(medicineItem.getTimeOneToTakeMed())||
+//                                        currentTime.equals(medicineItem.getTimeTwoToTakeMed())||
+//                                        currentTime.equals(medicineItem.getTimeTheeToTakeMed())
+//                                        ){
+//
+//                                    stringBuilder.append(medicineItem.getMedicineName()+" ");
+//
+//                                    medicineIdForNotification.add(medicineItem.getId());
+//
+//                                }
+//                                break;
+//                        }
+//                    }
+//
+//                    if(stringBuilder.length()!=0 && !isNotificationShowing){
+//                        showNotification(stringBuilder.toString());
+//                        isNotificationShowing = true;
+//
+//                    }
+//
+//                    long futuretime = System.currentTimeMillis()+60000;
+//
+//                    while(System.currentTimeMillis()<futuretime){
+//
+//                        synchronized (this){
+//                            try {
+//                                wait(futuretime - System.currentTimeMillis());
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//                    isNotificationShowing = false;
+//                }
+//
+//
+//        }, 60000);
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -39,8 +127,6 @@ public class NotificationService extends Service {
 
                 while (true)
                 {
-                    //int randomId = new Random().nextInt(200);
-
                     stringBuilder = new StringBuilder("");
 
                     String currentTime = simpleDateFormat.format(System.currentTimeMillis());
@@ -58,7 +144,7 @@ public class NotificationService extends Service {
 
                                     stringBuilder.append(medicineItem.getMedicineName()+" ");
 
-//                                    showNotification(medicineItem.getMedicineName(), randomId);
+                                    //medicineIdForNotification.add(medicineItem.getId());
                                 }
                                 break;
                             case 2:
@@ -68,7 +154,8 @@ public class NotificationService extends Service {
 
                                     stringBuilder.append(medicineItem.getMedicineName()+" ");
 
-//                                    showNotification(medicineItem.getMedicineName(), randomId );
+                                    //medicineIdForNotification.add(medicineItem.getId());
+
                                 }
                                 break;
                             case 3:
@@ -79,7 +166,8 @@ public class NotificationService extends Service {
 
                                     stringBuilder.append(medicineItem.getMedicineName()+" ");
 
-//                                    showNotification(medicineItem.getMedicineName(), randomId );
+                                    //medicineIdForNotification.add(medicineItem.getId());
+
                                 }
                                 break;
                         }
@@ -91,16 +179,24 @@ public class NotificationService extends Service {
 
                     }
 
-                    try {
-                        Thread.sleep(60000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    long futuretime = System.currentTimeMillis()+60000;
+
+                    while(System.currentTimeMillis()<futuretime){
+
+                        synchronized (this){
+                            try {
+                                wait(futuretime - System.currentTimeMillis());
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
 
                     isNotificationShowing = false;
                 }
             }
         }).start();
+
         return START_STICKY;
     }
 

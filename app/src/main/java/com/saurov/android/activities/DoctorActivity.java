@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Doctor;
@@ -75,6 +76,8 @@ public class DoctorActivity extends Activity {
         doctorList.clear();
         doctorId.clear();
 
+        TextView userMessage = (TextView) findViewById(R.id.userMessage);
+
         for (Iterator<Doctor> iter = Doctor.findAll(Doctor.class); iter.hasNext(); ) {
 
             Doctor element = iter.next();
@@ -83,6 +86,10 @@ public class DoctorActivity extends Activity {
                 doctorList.add(element.getDoctorName());
                 doctorId.add(element.getId());
             }
+        }
+
+        if(doctorList.isEmpty()){
+            userMessage.setVisibility(View.VISIBLE);
         }
 
         doctorListAdapter.notifyDataSetChanged();

@@ -11,5 +11,4 @@
         android:text="Taken"
         android:textSize="30sp" />
 
-
 </LinearLayout>

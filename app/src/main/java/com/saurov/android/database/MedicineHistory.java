@@ -11,24 +11,24 @@ public class MedicineHistory extends SugarRecord<MedicineHistory> {
 
     long medicineId;
     long userId;
-    String dateAdded;
-    Stack<String> skippedRecords;
-    Stack<String> takenRecords;
+    String skippedRecords;
+    String takenRecords;
 
-    public MedicineHistory(Context context, long medicineId, String dateAdded) {
+    public MedicineHistory() {
+    }
+
+    public MedicineHistory(Context context, long medicineId) {
 
         userId = MySharedPreference.getCurrentUserId(context);
-        this.dateAdded = dateAdded;
-        skippedRecords = new Stack<>();
-        takenRecords = new Stack<>();
+        this.medicineId = medicineId;
     }
 
     public void addDataToSkippedRecord(String time) {
-        skippedRecords.push(time);
+        skippedRecords= time;
     }
 
     public void addDataToTakenRecord(String time) {
-        takenRecords.push(time);
+        takenRecords= time;
     }
 
 }
