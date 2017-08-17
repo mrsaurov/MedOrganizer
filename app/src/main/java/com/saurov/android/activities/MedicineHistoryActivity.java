@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 
 import com.saurov.android.R;
 import com.saurov.android.helpers.Pager;
+import com.saurov.android.helpers.SideDrawer;
 
 public class MedicineHistoryActivity extends FragmentActivity {
 
@@ -18,6 +19,8 @@ public class MedicineHistoryActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_history);
+
+        SideDrawer.showDrawer(this);
 
 
         //Initializing the tablayout

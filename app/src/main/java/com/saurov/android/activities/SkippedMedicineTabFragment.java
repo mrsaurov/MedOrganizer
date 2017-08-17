@@ -14,6 +14,7 @@ import com.saurov.android.database.MedicineHistory;
 import com.saurov.android.helpers.CustomMedicineHistoryListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class SkippedMedicineTabFragment extends Fragment {
         super.onCreate(savedInstanceState);
         medicineId = getArguments().getLong(MedicineDetailFragment.ARG_MEDICINE_ID);
         userId = MySharedPreference.getCurrentUserId(getContext());
+        medicineSkipRecords = new ArrayList<>();
 
     }
 
@@ -57,8 +59,7 @@ public class SkippedMedicineTabFragment extends Fragment {
             }
         }
 
-        CustomMedicineHistoryListAdapter adapter = new CustomMedicineHistoryListAdapter(getContext(),
-                Medicine.findById(Medicine.class, medicineId).getMedicineName(), medicineSkipRecords);
+        CustomMedicineHistoryListAdapter adapter = new CustomMedicineHistoryListAdapter(getContext(), medicineSkipRecords);
 
         skippedListView.setAdapter(adapter);
 

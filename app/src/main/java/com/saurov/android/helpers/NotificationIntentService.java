@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.util.Log;
 
 import com.saurov.android.R;
@@ -87,6 +90,31 @@ public class NotificationIntentService extends IntentService {
 
             if (!stringBuilder.toString().trim().isEmpty()) {
                 showNotification(stringBuilder.toString());
+
+                //////////Setting up alarm sound
+                Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                MediaPlayer mp = MediaPlayer.create(this, alert);
+                mp.start();
+
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    int count = 0;
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Log.d("TAG", "Count: "+count);
+
+                        if(count<3){
+                            mp.start();
+                            count++;
+                        }else
+                        {
+                            mp.stop();
+                            mp.release();
+                        }
+                    }
+                });
+
+                ///////////////
             }
 
         }
@@ -135,9 +163,4 @@ public class NotificationIntentService extends IntentService {
 
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
-
-
-
-
-
 }

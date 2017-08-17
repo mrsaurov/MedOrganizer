@@ -18,7 +18,7 @@ public class Pager extends FragmentStatePagerAdapter {
 
     public Pager(FragmentManager fm,Bundle arguments, int tabCount) {
         super(fm);
-
+        this.arguments = arguments;
         this.tabCount = tabCount;
     }
 

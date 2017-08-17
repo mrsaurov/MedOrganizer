@@ -14,6 +14,7 @@ import com.saurov.android.database.MedicineHistory;
 import com.saurov.android.helpers.CustomMedicineHistoryListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class TakenMedicineTabFragment extends Fragment {
         super.onCreate(savedInstanceState);
         medicineId = getArguments().getLong(MedicineDetailFragment.ARG_MEDICINE_ID);
         userId = MySharedPreference.getCurrentUserId(getContext());
+        medicineTakenRecords = new ArrayList<>();
 
     }
 
@@ -56,8 +58,7 @@ public class TakenMedicineTabFragment extends Fragment {
             }
         }
 
-        CustomMedicineHistoryListAdapter adapter = new CustomMedicineHistoryListAdapter(getContext(),
-                Medicine.findById(Medicine.class, medicineId).getMedicineName(), medicineTakenRecords);
+        CustomMedicineHistoryListAdapter adapter = new CustomMedicineHistoryListAdapter(getContext(), medicineTakenRecords);
 
         takenListView.setAdapter(adapter);
 

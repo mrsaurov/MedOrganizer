@@ -67,7 +67,7 @@ public class NotificationActionHandler extends IntentService{
 
             MedicineHistory medicineHistory = new MedicineHistory(this, medicineId);
 
-            medicineHistory.addDataToSkippedRecord(medicineitem.getMedicineName()+" taken at "+ sdf.format(cal.getTime()));
+            medicineHistory.addDataToTakenRecord(medicineitem.getMedicineName()+" taken at "+ sdf.format(cal.getTime()));
 
             medicineHistory.save();
         }

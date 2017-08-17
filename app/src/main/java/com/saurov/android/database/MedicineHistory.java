@@ -5,8 +5,6 @@ import android.content.Context;
 import com.orm.SugarRecord;
 import com.saurov.android.helpers.MySharedPreference;
 
-import java.util.Stack;
-
 public class MedicineHistory extends SugarRecord<MedicineHistory> {
 
     long medicineId;

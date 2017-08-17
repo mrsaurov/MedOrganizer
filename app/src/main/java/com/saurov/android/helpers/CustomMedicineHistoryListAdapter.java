@@ -18,12 +18,10 @@ public class CustomMedicineHistoryListAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> skipHistory;
-    private String medicineName;
 
-    public CustomMedicineHistoryListAdapter(Context context, String medicineName, List<String> skipHistory) {
+    public CustomMedicineHistoryListAdapter(Context context, List<String> skipHistory) {
         this.context = context;
         this.skipHistory = skipHistory;
-        this.medicineName = medicineName;
     }
 
     @Override
@@ -67,9 +65,8 @@ public class CustomMedicineHistoryListAdapter extends BaseAdapter {
         int color = generator.getRandomColor();
 
         TextDrawable drawable = TextDrawable.builder()
-                .buildRound(Integer.toString(position), color);
+                .buildRound(Integer.toString(position+1), color);
 
-        holder.medicineDetail.setText(medicineName);
         holder.skipDetail.setText(skipHistory.get(position));
         holder.imageView.setImageDrawable(drawable);
 
@@ -81,12 +78,10 @@ public class CustomMedicineHistoryListAdapter extends BaseAdapter {
     private class ViewHolder {
         private ImageView imageView;
         private TextView skipDetail;
-        private TextView medicineDetail;
 
         public ViewHolder(View v) {
             imageView = (ImageView) v.findViewById(R.id.medicineHistoryImageViewItem);
             skipDetail = (TextView) v.findViewById(R.id.medicineHistoryDetail);
-            medicineDetail = (TextView) v.findViewById(R.id.medicineDetailHistoryList);
         }
     }
 }
