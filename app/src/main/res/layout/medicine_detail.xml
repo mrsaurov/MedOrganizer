@@ -86,33 +86,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:weightSum="1">
 
 
         <ImageButton
             android:id="@+id/deleteImageButtonFragment"
             android:layout_width="53dp"
             android:layout_height="53dp"
-            android:background="@drawable/recycle_bin_icon_red"
             android:layout_gravity="center"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="20dp"
+            android:background="@drawable/recycle_bin_icon_red" />
 
         <ImageButton
             android:id="@+id/editImageButtonFragment"
             android:layout_width="54dp"
             android:layout_height="56dp"
-            android:layout_weight="0.03"
-            android:background="@drawable/edit_image_button"
             android:layout_marginRight="20dp"
+            android:layout_weight="0.03"
+            android:background="@drawable/edit_image_button"/>
 
         <ImageButton
             android:id="@+id/historyImageButtonFragment"
             android:layout_width="53dp"
             android:layout_height="53dp"
-            android:background="@drawable/history"
-        />
+            android:background="@drawable/history" />
 
     </LinearLayout>
 

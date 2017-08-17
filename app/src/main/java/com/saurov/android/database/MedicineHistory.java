@@ -31,4 +31,19 @@ public class MedicineHistory extends SugarRecord<MedicineHistory> {
         takenRecords= time;
     }
 
+    public String getSkippedRecords() {
+        return skippedRecords;
+    }
+
+    public String getTakenRecords() {
+        return takenRecords;
+    }
+
+    public long getMedicineId() {
+        return medicineId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
 }

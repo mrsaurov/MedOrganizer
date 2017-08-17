@@ -13,6 +13,7 @@ public class MedicineHistoryActivity extends FragmentActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,14 @@ public class MedicineHistoryActivity extends FragmentActivity {
 
         viewPager = (ViewPager) findViewById(R.id.pager);
 
-        Pager adapter = new Pager(getSupportFragmentManager(), 2);
+        long medicineId = getIntent().getLongExtra(MedicineDetailFragment.ARG_MEDICINE_ID, 0);
+
+        Bundle arguments = new Bundle();
+
+        arguments.putLong(MedicineDetailFragment.ARG_MEDICINE_ID, medicineId);
+
+
+        Pager adapter = new Pager(getSupportFragmentManager(), arguments, 2);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

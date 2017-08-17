@@ -1,5 +1,6 @@
 package com.saurov.android.helpers;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -10,11 +11,12 @@ import com.saurov.android.activities.TakenMedicineTabFragment;
 
 public class Pager extends FragmentStatePagerAdapter {
 
-    int tabCount;
+    private int tabCount;
+    private Bundle arguments;
 
     String tabTitles[] = {"Taken", "Skipped"};
 
-    public Pager(FragmentManager fm, int tabCount) {
+    public Pager(FragmentManager fm,Bundle arguments, int tabCount) {
         super(fm);
 
         this.tabCount = tabCount;
@@ -24,12 +26,13 @@ public class Pager extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position) {
-
             case 0:
                 TakenMedicineTabFragment tab1 = new TakenMedicineTabFragment();
+                tab1.setArguments(arguments);
                 return tab1;
             case 1:
                 SkippedMedicineTabFragment tab2 = new SkippedMedicineTabFragment();
+                tab2.setArguments(arguments);
                 return tab2;
             default:
                 return null;
