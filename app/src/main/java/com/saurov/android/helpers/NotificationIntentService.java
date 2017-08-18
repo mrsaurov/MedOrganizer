@@ -27,6 +27,8 @@ public class NotificationIntentService extends IntentService {
 
     public static ArrayList<Long> medicineIdForNotification;
 
+    public static MediaPlayer mp;
+
     public NotificationIntentService() {
         super("NotificationIntentService");
     }
@@ -92,27 +94,38 @@ public class NotificationIntentService extends IntentService {
                 showNotification(stringBuilder.toString());
 
                 //////////Setting up alarm sound
-                Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                MediaPlayer mp = MediaPlayer.create(this, alert);
-                mp.start();
 
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                    int count = 0;
+                new Thread(new Runnable() {
                     @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        Log.d("TAG", "Count: "+count);
+                    public void run() {
 
-                        if(count<3){
-                            mp.start();
-                            count++;
-                        }else
-                        {
-                            mp.stop();
-                            mp.release();
-                        }
+                        Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                        mp = MediaPlayer.create(NotificationIntentService.this, alert);
+                        mp.start();
+
+                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                            int count = 0;
+
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                Log.d("TAG", "Count: " + count);
+
+                                if (count < 3) {
+                                    mp.start();
+                                    count++;
+                                } else {
+                                    mp.stop();
+                                    mp.release();
+                                }
+                            }
+                        });
+
                     }
-                });
+                }).start();
 
                 ///////////////
             }

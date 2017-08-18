@@ -31,8 +31,6 @@ public class NotificationActionHandler extends IntentService{
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
-        Log.d("---", "inside notification handler"+ NotificationIntentService.medicineIdForNotification.toString());
-
         if (intent != null) {
 
             notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -53,6 +51,13 @@ public class NotificationActionHandler extends IntentService{
 
     private void handleActionTake(int notificationId) {
         Log.d("------", "inside handleActionTake");
+
+        if (NotificationIntentService.mp.isPlaying()) {
+
+            NotificationIntentService.mp.stop();
+            NotificationIntentService.mp.release();
+        }
+
         notificationManager.cancel(notificationId);
 
 
@@ -81,6 +86,14 @@ public class NotificationActionHandler extends IntentService{
 
     private void handleActionSkip(int notificationId) {
         Log.d("------", "inside handleActionSkip");
+
+        if (NotificationIntentService.mp.isPlaying()) {
+
+            NotificationIntentService.mp.stop();
+            NotificationIntentService.mp.release();
+        }
+
+
         notificationManager.cancel(notificationId);
 
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a, dd-MM-yyyy", Locale.US);

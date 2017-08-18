@@ -77,7 +77,7 @@
 
         <service
             android:name=".helpers.NotificationIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
     </application>
 
 </manifest>
