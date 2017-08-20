@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".StApp"
@@ -78,6 +79,14 @@
         <service
             android:name=".helpers.NotificationIntentService"
             android:exported="false" />
+
+        <receiver android:name=".activities.ShutdownReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activities.MedicineHistoryDrawerActivity"></activity>
     </application>
 
 </manifest>

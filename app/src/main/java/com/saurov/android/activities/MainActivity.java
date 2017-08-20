@@ -55,7 +55,10 @@ public class MainActivity extends Activity {
 //        Intent i = new Intent(MainActivity.this, NotificationService.class);
 //        startService(i);
 
-        if (!MySharedPreference.isAlarmTriggered(this)) {
+
+        Log.d("TAG", "alarm status: " + MySharedPreference.isAlarmTriggered(this));
+
+        //if (!MySharedPreference.isAlarmTriggered(this)) {
 
             Log.d("TAG", "service starter");
 
@@ -70,7 +73,7 @@ public class MainActivity extends Activity {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), frequency, pendingIntent);
 
             MySharedPreference.setAlarmTriggerStatus(this, true);
-        }
+        //}
 
 
         //Moved ListView Population Logic to onResume

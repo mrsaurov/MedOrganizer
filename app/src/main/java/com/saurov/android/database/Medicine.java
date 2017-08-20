@@ -1,7 +1,6 @@
 package com.saurov.android.database;
 
 import com.orm.SugarRecord;
-import com.saurov.android.helpers.MySharedPreference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -76,18 +75,6 @@ public class Medicine extends SugarRecord<Medicine> {
         this.dayChoice = dayChoice;
     }
 
-    public void setTimeOneToTakeMed(String timeOneToTakeMed) {
-        this.timeOneToTakeMed = timeOneToTakeMed;
-    }
-
-    public void setTimeTwoToTakeMed(String timeTwoToTakeMed) {
-        this.timeTwoToTakeMed = timeTwoToTakeMed;
-    }
-
-    public void setTimeTheeToTakeMed(String timeTheeToTakeMed) {
-        this.timeTheeToTakeMed = timeTheeToTakeMed;
-    }
-
     public String daysToTakeMedicineRetriever() {
 
         String result = "";
@@ -143,15 +130,29 @@ public class Medicine extends SugarRecord<Medicine> {
         return timeOneToTakeMed;
     }
 
+    public void setTimeOneToTakeMed(String timeOneToTakeMed) {
+        this.timeOneToTakeMed = timeOneToTakeMed;
+    }
+
     public String getTimeTwoToTakeMed() {
         return timeTwoToTakeMed;
+    }
+
+    public void setTimeTwoToTakeMed(String timeTwoToTakeMed) {
+        this.timeTwoToTakeMed = timeTwoToTakeMed;
     }
 
     public String getTimeTheeToTakeMed() {
         return timeTheeToTakeMed;
     }
 
+    public void setTimeTheeToTakeMed(String timeTheeToTakeMed) {
+        this.timeTheeToTakeMed = timeTheeToTakeMed;
+    }
+
     public long getUserId() {
         return userId;
     }
+
+
 }

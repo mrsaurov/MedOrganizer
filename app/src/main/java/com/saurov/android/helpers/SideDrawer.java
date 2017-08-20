@@ -20,7 +20,7 @@ import com.saurov.android.activities.DoctorActivity;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
 import com.saurov.android.activities.MedicationActivity;
-import com.saurov.android.activities.MedicineHistoryActivity;
+import com.saurov.android.activities.MedicineHistoryDrawerActivity;
 import com.saurov.android.database.User;
 
 import java.util.Iterator;
@@ -64,7 +64,7 @@ public class SideDrawer {
                             activity.startActivity(new Intent(activity, DoctorActivity.class));
                         } else if (drawerItem.getIdentifier() == 101) {
                             activity.finish();
-                            activity.startActivity(new Intent(activity, MedicineHistoryActivity.class));
+                            activity.startActivity(new Intent(activity, MedicineHistoryDrawerActivity.class));
                         }
                         return true;
                     }

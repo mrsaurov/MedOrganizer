@@ -10,6 +10,7 @@ import com.saurov.android.database.Medicine;
 import com.saurov.android.database.MedicineHistory;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -23,6 +24,7 @@ public class NotificationActionHandler extends IntentService{
     public static final String EXTRA_NOTIFICATION_ID = "com.saurov.android.androidapp.EXTRA_NOTIFICATION_ID";
 
     private NotificationManager notificationManager;
+    private ArrayList<String> medicineIdForNotification;
 
     public NotificationActionHandler() {
         super("NotificationActionHandler");
@@ -32,6 +34,8 @@ public class NotificationActionHandler extends IntentService{
     protected void onHandleIntent(@Nullable Intent intent) {
 
         if (intent != null) {
+
+            medicineIdForNotification = new ArrayList<>(intent.getStringArrayListExtra(NotificationIntentService.NOTIFICATION_EXTRA));
 
             notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
@@ -52,10 +56,12 @@ public class NotificationActionHandler extends IntentService{
     private void handleActionTake(int notificationId) {
         Log.d("------", "inside handleActionTake");
 
-        if (NotificationIntentService.mp.isPlaying()) {
+        if (NotificationIntentService.mp != null) {
+            if (NotificationIntentService.mp.isPlaying()) {
 
-            NotificationIntentService.mp.stop();
-            NotificationIntentService.mp.release();
+                NotificationIntentService.mp.stop();
+                NotificationIntentService.mp.release();
+            }
         }
 
         notificationManager.cancel(notificationId);
@@ -66,7 +72,7 @@ public class NotificationActionHandler extends IntentService{
 
         for(int i=0; i<NotificationIntentService.medicineIdForNotification.size();i++){
 
-            long medicineId = NotificationIntentService.medicineIdForNotification.get(i);
+            long medicineId = Long.parseLong(NotificationIntentService.medicineIdForNotification.get(i));
 
             Medicine medicineitem = Medicine.findById(Medicine.class, medicineId);
 
@@ -87,10 +93,12 @@ public class NotificationActionHandler extends IntentService{
     private void handleActionSkip(int notificationId) {
         Log.d("------", "inside handleActionSkip");
 
-        if (NotificationIntentService.mp.isPlaying()) {
+        if (NotificationIntentService.mp != null) {
+            if (NotificationIntentService.mp.isPlaying()) {
 
-            NotificationIntentService.mp.stop();
-            NotificationIntentService.mp.release();
+                NotificationIntentService.mp.stop();
+                NotificationIntentService.mp.release();
+            }
         }
 
 
@@ -101,7 +109,7 @@ public class NotificationActionHandler extends IntentService{
 
         for(int i=0; i<NotificationIntentService.medicineIdForNotification.size();i++){
 
-            long medicineId = NotificationIntentService.medicineIdForNotification.get(i);
+            long medicineId = Long.parseLong(NotificationIntentService.medicineIdForNotification.get(i));
 
             Medicine medicineitem = Medicine.findById(Medicine.class, medicineId);
 

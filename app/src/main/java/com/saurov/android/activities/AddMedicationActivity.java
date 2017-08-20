@@ -3,7 +3,6 @@ package com.saurov.android.activities;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -28,11 +27,9 @@ import com.saurov.android.helpers.CustomTimeListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
 import com.saurov.android.helpers.SideDrawer;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -101,28 +98,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
         reminderTimes = (RadioGroup) findViewById(R.id.reminderTimesRB);
         radioGroupDays = (RadioGroup) findViewById(R.id.dayChoiceRB);
 
-        /*reminderTimes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
-                Log.d("TAG", group.getCheckedRadioButtonId() + " " + checkedId);
-
-                switch (checkedId) {
-
-                    case R.id.onceADayRB:
-                        remainderTimeChoice = 1;
-                        break;
-                    case R.id.twiceADayRB:
-                        remainderTimeChoice = 2;
-                        break;
-                    case R.id.thriceADayRB:
-                        remainderTimeChoice = 3;
-                        break;
-                    default:
-                        remainderTimeChoice = -1;
-                }
-            }
-        });*/
 
         //Referencing timePicker ListView
         timePickerList = (ListView) findViewById(R.id.timePickerListView);
@@ -176,18 +151,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
                                 timeData.set(position, timeHolder.timeText.getText().toString());
 
                                 Log.d("ifd", timeData.toString());
-
-                                //Setting rest of time dynamically
-                                //if(position==0){
-
-                                    //CustomTimeListAdapter.TimeHolder timeHolderAtPosition1 = (CustomTimeListAdapter.TimeHolder)timePickerList.getChildAt(1).getTag();
-                                    //CustomTimeListAdapter.TimeHolder timeHolderAtPosition2 = (CustomTimeListAdapter.TimeHolder)timePickerList.getChildAt(2).getTag();
-
-
-                                //}
-
-                                //Log.d("TAG", AddMedicationActivity.this.timeData.toString());
-                                //Setting rest of the time dynamically when creating the list by passing the start time to adapter
                             }
                         };
 
@@ -225,9 +188,9 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
     }
 
     ///method for adding timeData to medicineItem...always called from addMedicineInfo()
-    public void insertMedicineTakeTimesToDatabase(Medicine medicine){
+    public void insertMedicineTakeTimesToDatabase(Medicine medicine) {
 
-        if(timeData!=null){
+        if (timeData != null) {
 
             Log.d("TAG", timeData.toString());
 
@@ -256,7 +219,7 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
         }
 
         //if (!startTimeString.isEmpty() && remainderTimeChoice != -1) {
-          //  handleReminderTimesData(startTimeString, medicine);
+        //  handleReminderTimesData(startTimeString, medicine);
         //}
 
         insertMedicineTakeTimesToDatabase(medicine);
@@ -274,93 +237,6 @@ public class AddMedicationActivity extends FragmentActivity implements SelectDay
     public int getRemainderTimeChoice() {
         return remainderTimeChoice;
     }
-
-
-    //This method is used for auto generating reminder times in days according to remainderTimeChoice
-//    final public void handleReminderTimesData(String startTimeString, Medicine medicine) {
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);
-//
-//        Date date;
-//
-//        try {
-//            date = sdf.parse(startTimeString);
-//        } catch (ParseException e) {
-//            Toast.makeText(getApplicationContext(), "Invalid Time Input", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        Calendar calendar = Calendar.getInstance();
-//
-//        calendar.setTime(date);
-//
-//
-//        ///Edit and Add Medicine activity can create problem regarding null values
-//        ///on take times and startTime
-//
-//        switch (remainderTimeChoice) {
-//
-//            case 1:
-//                medicine.setTakeTwoTime(null);
-//                medicine.setTakeThreeTime(null);
-//                medicine.setTakeOneTime(startTimeString);
-//                break;
-//            case 2:
-//                medicine.setTakeTwoTime(null);
-//                medicine.setTakeThreeTime(null);
-//                medicine.setTakeOneTime(startTimeString);
-//                calendar.add(Calendar.HOUR, 12);
-//                medicine.setTakeTwoTime(sdf.format(calendar.getTime()));
-//                break;
-//            case 3:
-//                medicine.setTakeTwoTime(null);
-//                medicine.setTakeThreeTime(null);
-//                medicine.setTakeOneTime(startTimeString);
-//                calendar.add(Calendar.HOUR, 8);
-//                medicine.setTakeTwoTime(sdf.format(calendar.getTime()));
-//                calendar.add(Calendar.HOUR, 8);
-//                medicine.setTakeThreeTime(sdf.format(calendar.getTime()));
-//                break;
-//        }
-//    }
-
-//    final public void handleReminderTimesDataType2(String startTimeString, CustomTimeListAdapter.TimeHolder timeHolder) {
-//
-//        Log.d("Interface", "inside Handle2");
-//
-//        Toast.makeText(AddMedicationActivity.this, startTimeString, Toast.LENGTH_SHORT).show();
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT, Locale.US);
-//
-//        Date date;
-//
-//        try {
-//            date = sdf.parse(startTimeString);
-//        } catch (ParseException e) {
-//            Toast.makeText(getApplicationContext(), "Invalid Time Input", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        Calendar calendar = Calendar.getInstance();
-//
-//        calendar.setTime(date);
-//
-//
-//        ///Edit and Add Medicine activity can create problem regarding null values
-//        ///on take times and startTime
-//
-//        switch (remainderTimeChoice) {
-//            case 1:
-//                break;
-//            case 2:
-//                calendar.add(Calendar.HOUR, 12);
-//                timeHolder.timeText.setText(sdf.format(calendar.getTime()));
-//                break;
-//            case 3:
-//                calendar.add(Calendar.HOUR, 8);
-//                timeHolder.timeText.setText(sdf.format(calendar.getTime()));
-//        }
-//    }
 
 
 
