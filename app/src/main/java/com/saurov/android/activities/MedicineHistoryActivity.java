@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import com.saurov.android.R;
-import com.saurov.android.helpers.Pager;
+import com.saurov.android.helpers.MedicineHistoryPager;
 import com.saurov.android.helpers.SideDrawer;
 
 public class MedicineHistoryActivity extends FragmentActivity {
@@ -37,7 +37,7 @@ public class MedicineHistoryActivity extends FragmentActivity {
         arguments.putLong(MedicineDetailFragment.ARG_MEDICINE_ID, medicineId);
 
 
-        Pager adapter = new Pager(getSupportFragmentManager(), arguments, 2);
+        MedicineHistoryPager adapter = new MedicineHistoryPager(getSupportFragmentManager(), arguments, 2);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -7,13 +7,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
+import com.saurov.android.dialogs.DeleteMedicineDialogFragment;
 import com.saurov.android.helpers.CustomMedicineListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
 import com.saurov.android.helpers.NotificationIntentService;
@@ -25,7 +31,7 @@ import java.util.Iterator;
 
 //This activity shows Medicine List
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     ListView medicineListView;
     CustomMedicineListAdapter medicineListAdapter;
@@ -108,6 +114,9 @@ public class MainActivity extends Activity {
                 context.startActivity(intent);
             }
         });
+
+        registerForContextMenu(medicineListView);
+
     }
 
     @Override
@@ -128,4 +137,53 @@ public class MainActivity extends Activity {
 
         medicineListAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add(0, v.getId(), 0, "Edit");
+        menu.add(0, v.getId(), 0 , "History");
+        menu.add(0, v.getId(), 1, "Delete");
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        if(item.getTitle() == "Delete"){
+            DialogFragment deleteDialogFragment = new DeleteMedicineDialogFragment();
+
+            Bundle arguments = new Bundle();
+
+            arguments.putLong(MedicineDetailFragment.ARG_MEDICINE_ID,medicineId.get(info.position));
+
+            deleteDialogFragment.setArguments(arguments);
+
+            deleteDialogFragment.show(getSupportFragmentManager(), "delete medicine");
+        }
+        else if(item.getTitle() == "Edit"){
+
+            Intent i = new Intent(this, EditMedicineActivity.class);
+
+            i.putExtra(MedicineDetailFragment.ARG_MEDICINE_ID, medicineId.get(info.position));
+
+            startActivity(i);
+
+        }
+        else if(item.getTitle() == "History"){
+
+            Intent intent = new Intent(this, MedicineHistoryActivity.class);
+
+            intent.putExtra(MedicineDetailFragment.ARG_MEDICINE_ID, medicineId.get(info.position));
+
+            startActivity(intent);
+        }
+
+        return true;
+    }
 }
+
+
+
+

@@ -12,6 +12,7 @@ import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
 import com.saurov.android.helpers.CustomMedicineListAdapter;
 import com.saurov.android.helpers.MySharedPreference;
+import com.saurov.android.helpers.SideDrawer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ public class MedicineHistoryDrawerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_history_drawer);
+
+        SideDrawer.showDrawer(this);
 
         ListView medicineHistoryListView = (ListView) findViewById(R.id.medicineHistoryListView);
 

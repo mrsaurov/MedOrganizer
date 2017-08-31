@@ -9,14 +9,14 @@ import com.saurov.android.activities.SkippedMedicineTabFragment;
 import com.saurov.android.activities.TakenMedicineTabFragment;
 
 
-public class Pager extends FragmentStatePagerAdapter {
+public class MedicineHistoryPager extends FragmentStatePagerAdapter {
 
     private int tabCount;
     private Bundle arguments;
 
-    String tabTitles[] = {"Taken", "Skipped"};
+    private String tabTitles[] = {"Taken", "Skipped"};
 
-    public Pager(FragmentManager fm,Bundle arguments, int tabCount) {
+    public MedicineHistoryPager(FragmentManager fm, Bundle arguments, int tabCount) {
         super(fm);
         this.arguments = arguments;
         this.tabCount = tabCount;
