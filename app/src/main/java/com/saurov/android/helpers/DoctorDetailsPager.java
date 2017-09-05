@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.saurov.android.activities.SkippedMedicineTabFragment;
-import com.saurov.android.activities.TakenMedicineTabFragment;
+import com.saurov.android.activities.DoctorAppointmentFragment;
+import com.saurov.android.activities.DoctorDetailFragment;
 
 public class DoctorDetailsPager extends FragmentStatePagerAdapter {
 
@@ -26,11 +26,11 @@ public class DoctorDetailsPager extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TakenMedicineTabFragment tab1 = new TakenMedicineTabFragment();
+                DoctorDetailFragment tab1 = new DoctorDetailFragment();
                 tab1.setArguments(arguments);
                 return tab1;
             case 1:
-                SkippedMedicineTabFragment tab2 = new SkippedMedicineTabFragment();
+                DoctorAppointmentFragment tab2 = new DoctorAppointmentFragment();
                 tab2.setArguments(arguments);
                 return tab2;
             default:
