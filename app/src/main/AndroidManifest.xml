@@ -26,7 +26,7 @@
             android:value="appdb.db" />
         <meta-data
             android:name="VERSION"
-            android:value="9" />
+            android:value="10" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -87,7 +87,8 @@
         </receiver>
 
         <activity android:name=".activities.MedicineHistoryDrawerActivity" />
-        <activity android:name=".activities.AddAppointmentActivity"></activity>
+        <activity android:name=".activities.AddAppointmentActivity" />
+        <activity android:name=".activities.AppointmentDetailActivity"></activity>
     </application>
 
 </manifest>

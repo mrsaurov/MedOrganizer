@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.view.ContextMenu;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.saurov.android.CommonConstants;
 import com.saurov.android.R;
 import com.saurov.android.database.Doctor;
 import com.saurov.android.database.DoctorAppointment;
@@ -32,11 +32,11 @@ import java.util.Locale;
 public class DoctorAppointmentFragment extends Fragment {
 
 
+    ArrayList<Long> pastAppointmentIDList;
+    ArrayList<Long> upcomingAppointmentIDList;
     private ListView pastAppointmentListView;
     private ListView upcomingAppointmentListView;
     private FloatingActionButton addappointmentFAB;
-    ArrayList<Long> pastAppointmentIDList;
-    ArrayList<Long> upcomingAppointmentIDList;
     private Doctor doctorItem;
 
     public DoctorAppointmentFragment() {
@@ -102,6 +102,33 @@ public class DoctorAppointmentFragment extends Fragment {
         ListUtils.setDynamicHeight(upcomingAppointmentListView);
 
 
+
+        pastAppointmentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent i = new Intent(getContext(), AppointmentDetailActivity.class);
+
+                i.putExtra(CommonConstants.ARG_APPOINTMENT_ID, pastAppointmentIDList.get(position));
+
+                startActivity(i);
+
+            }
+        });
+
+        upcomingAppointmentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent i = new Intent(getContext(), AppointmentDetailActivity.class);
+
+                i.putExtra(CommonConstants.ARG_APPOINTMENT_ID, upcomingAppointmentIDList.get(position));
+
+                startActivity(i);
+            }
+        });
+
+
         return rootView;
     }
 
@@ -129,8 +156,6 @@ public class DoctorAppointmentFragment extends Fragment {
             upcomingAppointmentIDList.add(appointment.getId());
         }
     }
-
-
 
 
     public static class ListUtils {

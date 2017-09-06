@@ -11,17 +11,20 @@ public class DoctorAppointment extends SugarRecord<DoctorAppointment> {
     private long doctorId;
     private String appointmentTitle;
     private String appointmentNotes;
+    private String appointmentLocation;
 
     public DoctorAppointment() {
     }
 
-    public DoctorAppointment(String appointmentDate, String appointmentTime, long userId, long doctorId, String appointmentTitle, String appointmentNotes) {
+    public DoctorAppointment(String appointmentDate, String appointmentTime,
+                             long userId, long doctorId, String appointmentTitle, String appointmentNotes, String appointmentLocation) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.userId = userId;
         this.doctorId = doctorId;
         this.appointmentTitle = appointmentTitle;
         this.appointmentNotes = appointmentNotes;
+        this.appointmentLocation = appointmentLocation;
     }
 
     public String getAppointmentDate() {
@@ -48,5 +51,7 @@ public class DoctorAppointment extends SugarRecord<DoctorAppointment> {
         return appointmentNotes;
     }
 
-
+    public String getAppointmentLocation() {
+        return appointmentLocation;
+    }
 }

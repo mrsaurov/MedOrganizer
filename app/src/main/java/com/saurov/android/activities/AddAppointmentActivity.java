@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.saurov.android.CommonConstants;
 import com.saurov.android.R;
 import com.saurov.android.database.DoctorAppointment;
 import com.saurov.android.helpers.MySharedPreference;
@@ -120,11 +121,18 @@ public class AddAppointmentActivity extends Activity {
 
             DoctorAppointment appointment = new DoctorAppointment(appointmentDate.getText().toString(),
                     appointmentTime.getText().toString(), MySharedPreference.getCurrentUserId(getApplicationContext()),
-                    doctorId, appointmentName.getText().toString(), appointmentNote.getText().toString());
+                    doctorId, appointmentName.getText().toString(), appointmentNote.getText().toString(),appointmentLocation.getText().toString());
 
             appointment.save();
 
-            startActivity(new Intent(this, DoctorActivity.class));
+            Intent i = new Intent(this, DoctorDetailActivity.class);
+
+            i.putExtra(CommonConstants.VIEWPAGER_POSTION, 1);
+            i.putExtra(DoctorDetailFragment.ARG_DOCTOR_ID,appointment.getDoctorId());
+
+            startActivity(i);
+
+            finish();
 
         }
     }

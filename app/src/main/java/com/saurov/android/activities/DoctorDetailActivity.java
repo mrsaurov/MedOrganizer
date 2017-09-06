@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
+import com.saurov.android.CommonConstants;
 import com.saurov.android.R;
 import com.saurov.android.helpers.DoctorDetailsPager;
 import com.saurov.android.helpers.SideDrawer;
@@ -25,6 +26,7 @@ public class DoctorDetailActivity extends FragmentActivity {
         arguments.putLong(DoctorDetailFragment.ARG_DOCTOR_ID,
                 getIntent().getLongExtra(DoctorDetailFragment.ARG_DOCTOR_ID, 0));
 
+        Bundle extras = getIntent().getExtras();
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayoutDoctorDetails);
 
@@ -36,6 +38,10 @@ public class DoctorDetailActivity extends FragmentActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        if(extras!=null){
+            viewPager.setCurrentItem(extras.getInt(CommonConstants.VIEWPAGER_POSTION));
+        }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

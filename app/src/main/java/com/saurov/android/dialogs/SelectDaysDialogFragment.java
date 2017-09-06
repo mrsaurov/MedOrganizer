@@ -23,6 +23,17 @@ public class SelectDaysDialogFragment extends DialogFragment {
 
     char[] selectedItems = new char[7];
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (OnDaySelectionDataPassListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "OnDaySelectionDataPassListener");
+        }
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -65,14 +76,5 @@ public class SelectDaysDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
 
-        try {
-            listener = (OnDaySelectionDataPassListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "OnDaySelectionDataPassListener");
-        }
-    }
 }
