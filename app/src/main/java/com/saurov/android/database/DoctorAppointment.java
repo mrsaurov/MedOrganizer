@@ -54,4 +54,24 @@ public class DoctorAppointment extends SugarRecord<DoctorAppointment> {
     public String getAppointmentLocation() {
         return appointmentLocation;
     }
+
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public void setAppointmentTitle(String appointmentTitle) {
+        this.appointmentTitle = appointmentTitle;
+    }
+
+    public void setAppointmentNotes(String appointmentNotes) {
+        this.appointmentNotes = appointmentNotes;
+    }
+
+    public void setAppointmentLocation(String appointmentLocation) {
+        this.appointmentLocation = appointmentLocation;
+    }
 }

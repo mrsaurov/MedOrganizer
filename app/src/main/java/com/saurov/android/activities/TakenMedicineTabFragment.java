@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.saurov.android.R;
-import com.saurov.android.database.Medicine;
 import com.saurov.android.database.MedicineHistory;
 import com.saurov.android.helpers.CustomMedicineHistoryListAdapter;
 import com.saurov.android.helpers.MySharedPreference;

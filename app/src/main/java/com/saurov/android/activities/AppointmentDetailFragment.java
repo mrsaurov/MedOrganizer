@@ -1,6 +1,7 @@
 package com.saurov.android.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -84,6 +85,7 @@ public class AppointmentDetailFragment extends Fragment {
 
                 deleteDialogFragment.show(getFragmentManager(), "delete_appointment");
 
+
             }
         });
 
@@ -91,6 +93,11 @@ public class AppointmentDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Intent i = new Intent(getContext(), EditAppointmentActivity.class);
+
+                i.putExtra(CommonConstants.ARG_APPOINTMENT_ID, appointmentItem.getId());
+
+                startActivity(i);
             }
         });
 

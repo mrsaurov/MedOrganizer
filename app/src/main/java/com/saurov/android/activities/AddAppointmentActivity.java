@@ -26,12 +26,12 @@ import butterknife.OnClick;
 
 public class AddAppointmentActivity extends Activity {
 
-    private EditText appointmentName;
-    private EditText appointmentLocation;
-    private EditText appointmentNote;
-    private TextView appointmentTime;
-    private TextView appointmentDate;
-    private Calendar myCalendar = Calendar.getInstance();
+    protected EditText appointmentName;
+    protected EditText appointmentLocation;
+    protected EditText appointmentNote;
+    protected TextView appointmentTime;
+    protected TextView appointmentDate;
+    protected Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +102,9 @@ public class AddAppointmentActivity extends Activity {
                     }
                 }
 
-
         );
 
-
     }
-
 
     @OnClick(R.id.saveAppointmentButton)
     public void saveAppointment() {

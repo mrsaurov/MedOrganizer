@@ -19,7 +19,6 @@ import com.saurov.android.R;
 import com.saurov.android.activities.DoctorActivity;
 import com.saurov.android.activities.Login;
 import com.saurov.android.activities.MainActivity;
-import com.saurov.android.activities.MedicationActivity;
 import com.saurov.android.activities.MedicineHistoryDrawerActivity;
 import com.saurov.android.database.User;
 
@@ -30,7 +29,7 @@ public class SideDrawer {
 
     public static void showDrawer(final Activity activity) {
 
-        PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
+        //PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medications").withIcon(R.drawable.medication);
         PrimaryDrawerItem doctorItem = new PrimaryDrawerItem().withIdentifier(100).withName("Doctors").withIcon(GoogleMaterial.Icon.gmd_folder_person);
         PrimaryDrawerItem historyItem = new PrimaryDrawerItem().withIdentifier(101).withName("History").withIcon(GoogleMaterial.Icon.gmd_cloud_circle);
@@ -45,7 +44,7 @@ public class SideDrawer {
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(activity)
                 .addDrawerItems(
-                        homeItem,
+                        //homeItem,
                         medicationItem,
                         doctorItem,
                         historyItem
@@ -53,13 +52,10 @@ public class SideDrawer {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem.getIdentifier() == 1) {
+                        if (drawerItem.getIdentifier() == 2) {
                             activity.finish();
                             activity.startActivity(new Intent(activity, MainActivity.class));
-                        } else if (drawerItem.getIdentifier() == 2) {
-                            activity.finish();
-                            activity.startActivity(new Intent(activity, MedicationActivity.class));
-                        } else if(drawerItem.getIdentifier() == 100){
+                        } else if (drawerItem.getIdentifier() == 100) {
                             activity.finish();
                             activity.startActivity(new Intent(activity, DoctorActivity.class));
                         } else if (drawerItem.getIdentifier() == 101) {
@@ -71,8 +67,7 @@ public class SideDrawer {
                 });
 
 
-
-        if (currentLoggedInUserId!=-1) {
+        if (currentLoggedInUserId != -1) {
 
             User user = User.findById(User.class, currentLoggedInUserId);
 
@@ -104,7 +99,7 @@ public class SideDrawer {
 
                                                 element.setIsLoggedIn(0);
 
-                                                MySharedPreference.setCurrentUserId(activity,-1);
+                                                MySharedPreference.setCurrentUserId(activity, -1);
 
                                                 //MainActivity.loggedInUserId = -1;
 
