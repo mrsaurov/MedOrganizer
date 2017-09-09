@@ -10,7 +10,7 @@
         android:id="@+id/appointmentImageViewItem"
         android:layout_width="51dp"
         android:layout_height="52dp"
-        android:background="@drawable/account_icon_default"
+        android:background="@drawable/ic_schedule_black_24dp"
         android:contentDescription="@string/app_name" />
 
     <LinearLayout

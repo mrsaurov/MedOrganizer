@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.saurov.android.CommonConstants;
 import com.saurov.android.R;
+import com.saurov.android.database.Doctor;
 import com.saurov.android.database.DoctorAppointment;
 import com.saurov.android.helpers.MySharedPreference;
 
@@ -25,6 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AddAppointmentActivity extends Activity {
+
+    private long doctorId;
 
     protected EditText appointmentName;
     protected EditText appointmentLocation;
@@ -46,6 +49,12 @@ public class AddAppointmentActivity extends Activity {
         appointmentNote = (EditText) findViewById(R.id.appointmentNoteEditText);
         appointmentTime = (TextView) findViewById(R.id.appointmentTimeTextView);
         appointmentDate = (TextView) findViewById(R.id.appointmentDateTextView);
+
+        doctorId = getIntent().getLongExtra(DoctorDetailFragment.ARG_DOCTOR_ID, 0);
+
+
+        appointmentLocation.setText(Doctor.findById(Doctor.class, doctorId).getAddress());
+
 
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -113,8 +122,6 @@ public class AddAppointmentActivity extends Activity {
 
             Toast.makeText(this, "Specify Time and Date", Toast.LENGTH_SHORT).show();
         } else {
-
-            long doctorId = getIntent().getLongExtra(DoctorDetailFragment.ARG_DOCTOR_ID, 0);
 
             DoctorAppointment appointment = new DoctorAppointment(appointmentDate.getText().toString(),
                     appointmentTime.getText().toString(), MySharedPreference.getCurrentUserId(getApplicationContext()),

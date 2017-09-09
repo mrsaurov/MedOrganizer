@@ -1,6 +1,5 @@
 package com.saurov.android.activities;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.saurov.android.R;
 import com.saurov.android.database.Medicine;
@@ -66,19 +65,19 @@ public class MainActivity extends FragmentActivity {
 
         //if (!MySharedPreference.isAlarmTriggered(this)) {
 
-            Log.d("TAG", "service starter");
+        Log.d("TAG", "service starter");
 
-            Intent myIntent = new Intent(this, NotificationIntentService.class);
-            PendingIntent pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
+        Intent myIntent = new Intent(this, NotificationIntentService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
 
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            //calendar.add(Calendar.SECOND, 60); // first time
-            long frequency = 60 * 1000; // in ms
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), frequency, pendingIntent);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        //calendar.add(Calendar.SECOND, 60); // first time
+        long frequency = 60 * 1000; // in ms
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), frequency, pendingIntent);
 
-            MySharedPreference.setAlarmTriggerStatus(this, true);
+        MySharedPreference.setAlarmTriggerStatus(this, true);
         //}
 
 
@@ -126,6 +125,8 @@ public class MainActivity extends FragmentActivity {
         medicineList.clear();
         medicineId.clear();
 
+        TextView userMessage = (TextView) findViewById(R.id.userMessageMedicine);
+
         for (Iterator<Medicine> iter = Medicine.findAll(Medicine.class); iter.hasNext(); ) {
             Medicine element = iter.next();
 
@@ -135,13 +136,17 @@ public class MainActivity extends FragmentActivity {
             }
         }
 
+        if(medicineList.isEmpty()){
+            userMessage.setVisibility(View.VISIBLE);
+        }
+
         medicineListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         menu.add(0, v.getId(), 0, "Edit");
-        menu.add(0, v.getId(), 0 , "History");
+        menu.add(0, v.getId(), 0, "History");
         menu.add(0, v.getId(), 1, "Delete");
 
     }
@@ -151,18 +156,17 @@ public class MainActivity extends FragmentActivity {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
-        if(item.getTitle() == "Delete"){
+        if (item.getTitle() == "Delete") {
             DialogFragment deleteDialogFragment = new DeleteMedicineDialogFragment();
 
             Bundle arguments = new Bundle();
 
-            arguments.putLong(MedicineDetailFragment.ARG_MEDICINE_ID,medicineId.get(info.position));
+            arguments.putLong(MedicineDetailFragment.ARG_MEDICINE_ID, medicineId.get(info.position));
 
             deleteDialogFragment.setArguments(arguments);
 
             deleteDialogFragment.show(getSupportFragmentManager(), "delete medicine");
-        }
-        else if(item.getTitle() == "Edit"){
+        } else if (item.getTitle() == "Edit") {
 
             Intent i = new Intent(this, EditMedicineActivity.class);
 
@@ -170,8 +174,7 @@ public class MainActivity extends FragmentActivity {
 
             startActivity(i);
 
-        }
-        else if(item.getTitle() == "History"){
+        } else if (item.getTitle() == "History") {
 
             Intent intent = new Intent(this, MedicineHistoryActivity.class);
 

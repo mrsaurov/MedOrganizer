@@ -61,23 +61,25 @@ public class CustomDoctorListAdapter extends BaseAdapter {
 
         String doctorName = (String) getItem(position);
 
-        char firstLetter = doctorName.charAt(0);
+        //char firstLetter = doctorName.charAt(0);
 
-        if(Character.isLowerCase(firstLetter)){
+        //if(Character.isLowerCase(firstLetter)){
 
-            firstLetter = Character.toUpperCase(firstLetter);
-        }
+       //     firstLetter = Character.toUpperCase(firstLetter);
+        //}
 
         holder.doctorName.setText(doctorName);
 
         ColorGenerator generator = ColorGenerator.MATERIAL;
 
-        int color = generator.getRandomColor();
+       // int color = generator.getRandomColor();
 
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound(Character.toString(firstLetter), color);
+        //TextDrawable drawable = TextDrawable.builder()
+           //     .buildRound(Character.toString(firstLetter), color);
 
-        holder.imageView.setImageDrawable(drawable);
+        //holder.imageView.setImageDrawable(drawable);
+
+        holder.imageView.setBackgroundResource(R.drawable.doctor_icon_high);
 
         return convertView;
     }

@@ -32,7 +32,7 @@ public class SideDrawer {
         //PrimaryDrawerItem homeItem = new PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(R.drawable.home);
         PrimaryDrawerItem medicationItem = new PrimaryDrawerItem().withIdentifier(2).withName("Medications").withIcon(R.drawable.medication);
         PrimaryDrawerItem doctorItem = new PrimaryDrawerItem().withIdentifier(100).withName("Doctors").withIcon(GoogleMaterial.Icon.gmd_folder_person);
-        PrimaryDrawerItem historyItem = new PrimaryDrawerItem().withIdentifier(101).withName("History").withIcon(GoogleMaterial.Icon.gmd_cloud_circle);
+        PrimaryDrawerItem historyItem = new PrimaryDrawerItem().withIdentifier(101).withName("History").withIcon(R.drawable.ic_history_black_24dp);
 
         //final MySharedPreference mySharedPreference = new MySharedPreference(activity);
 
