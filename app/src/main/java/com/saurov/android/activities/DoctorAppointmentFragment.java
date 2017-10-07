@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.saurov.android.CommonConstants;
 import com.saurov.android.R;
@@ -32,12 +31,16 @@ import java.util.Locale;
 public class DoctorAppointmentFragment extends Fragment {
 
 
-    ArrayList<Long> pastAppointmentIDList;
-    ArrayList<Long> upcomingAppointmentIDList;
+    private ArrayList<Long> pastAppointmentIDList;
+    private ArrayList<Long> upcomingAppointmentIDList;
     private ListView pastAppointmentListView;
     private ListView upcomingAppointmentListView;
     private FloatingActionButton addappointmentFAB;
     private Doctor doctorItem;
+
+    private TextView message;
+    private TextView pastTextView;
+    private TextView upcomingTextView;
 
     public DoctorAppointmentFragment() {
 
@@ -50,9 +53,6 @@ public class DoctorAppointmentFragment extends Fragment {
         long doctorId = getArguments().getLong(DoctorDetailFragment.ARG_DOCTOR_ID);
 
         doctorItem = Doctor.findById(Doctor.class, doctorId);
-
-        pastAppointmentIDList = new ArrayList<>();
-        upcomingAppointmentIDList = new ArrayList<>();
 
     }
 
@@ -67,6 +67,13 @@ public class DoctorAppointmentFragment extends Fragment {
 
         addappointmentFAB = (FloatingActionButton) rootView.findViewById(R.id.addAppointmentFAB);
 
+
+        pastAppointmentIDList = new ArrayList<>();
+        upcomingAppointmentIDList = new ArrayList<>();
+
+        message = (TextView) rootView.findViewById(R.id.userMessageAppointment);
+        pastTextView = (TextView) rootView.findViewById(R.id.pastTextView);
+        upcomingTextView = (TextView) rootView.findViewById(R.id.upcomingTextview);
 
         addappointmentFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +164,33 @@ public class DoctorAppointmentFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (pastAppointmentIDList.isEmpty() && upcomingAppointmentIDList.isEmpty()) {
+
+            message.setVisibility(View.VISIBLE);
+
+        } else {
+
+            message.setVisibility(View.GONE);
+        }
+
+        if (pastAppointmentIDList.isEmpty()) {
+
+            pastTextView.setVisibility(View.GONE);
+        } else {
+            pastTextView.setVisibility(View.VISIBLE);
+        }
+
+        if (upcomingAppointmentIDList.isEmpty()) {
+
+            upcomingTextView.setVisibility(View.GONE);
+        } else {
+            upcomingTextView.setVisibility(View.VISIBLE);
+        }
+    }
 
     public static class ListUtils {
         public static void setDynamicHeight(ListView mListView) {
@@ -178,6 +212,4 @@ public class DoctorAppointmentFragment extends Fragment {
             mListView.requestLayout();
         }
     }
-
-
 }

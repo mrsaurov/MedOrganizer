@@ -27,14 +27,13 @@ import butterknife.OnClick;
 
 public class AddAppointmentActivity extends Activity {
 
-    private long doctorId;
-
     protected EditText appointmentName;
     protected EditText appointmentLocation;
     protected EditText appointmentNote;
     protected TextView appointmentTime;
     protected TextView appointmentDate;
     protected Calendar myCalendar = Calendar.getInstance();
+    private long doctorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +51,11 @@ public class AddAppointmentActivity extends Activity {
 
         doctorId = getIntent().getLongExtra(DoctorDetailFragment.ARG_DOCTOR_ID, 0);
 
+        Doctor doctor = Doctor.findById(Doctor.class, doctorId);
 
-        appointmentLocation.setText(Doctor.findById(Doctor.class, doctorId).getAddress());
-
-
+        if (doctor != null) {
+            appointmentLocation.setText(doctor.getAddress());
+        }
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
