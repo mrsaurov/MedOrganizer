@@ -10,5 +10,6 @@ public class StApp extends SugarApp {
             super.onCreate();
 
             Stetho.initializeWithDefaults(this);
+
         }
 }

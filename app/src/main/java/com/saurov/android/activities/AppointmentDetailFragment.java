@@ -18,7 +18,7 @@ import com.saurov.android.R;
 import com.saurov.android.database.DoctorAppointment;
 import com.saurov.android.dialogs.DeleteAppointmentDialogFragment;
 
-import static com.mikepenz.iconics.Iconics.TAG;
+import static android.content.ContentValues.TAG;
 
 public class AppointmentDetailFragment extends Fragment {
 

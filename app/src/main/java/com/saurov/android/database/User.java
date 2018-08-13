@@ -22,6 +22,8 @@ public class User extends SugarRecord<User> {
     }
 
 
+
+
     public String getUserName() {
         return userName;
     }

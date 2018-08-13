@@ -10,7 +10,6 @@ import com.saurov.android.activities.TakenMedicineTabFragment;
 
 
 public class MedicineHistoryPager extends FragmentStatePagerAdapter {
-
     private int tabCount;
     private Bundle arguments;
 
