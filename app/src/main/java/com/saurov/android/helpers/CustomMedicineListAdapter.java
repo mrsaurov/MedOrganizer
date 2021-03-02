@@ -1,6 +1,8 @@
 package com.saurov.android.helpers;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,10 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.bumptech.glide.Glide;
 import com.saurov.android.R;
+import com.saurov.android.activities.MainActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -63,7 +68,7 @@ public class CustomMedicineListAdapter extends BaseAdapter {
 
         char firstLetter = medicineName.charAt(0);
 
-        if(Character.isLowerCase(firstLetter)){
+        if (Character.isLowerCase(firstLetter)) {
 
             firstLetter = Character.toUpperCase(firstLetter);
         }
@@ -77,8 +82,17 @@ public class CustomMedicineListAdapter extends BaseAdapter {
         TextDrawable drawable = TextDrawable.builder()
                 .buildRound(Character.toString(firstLetter), color);
 
-        holder.imageView.setImageDrawable(drawable);
+//        TextDrawable drawable = TextDrawable.builder()
+//                .beginConfig()
+//                .fontSize(Math.round(convertDpToPixel(26, context)))
+//                .height(Math.round(convertDpToPixel(52, context)))
+//                .width(Math.round(convertDpToPixel(52, context)))
+//                .endConfig()
+//                .buildRound("Mechanical", color);
 
+
+
+        holder.imageView.setImageDrawable(drawable);
         return convertView;
     }
 
@@ -90,5 +104,13 @@ public class CustomMedicineListAdapter extends BaseAdapter {
             imageView = (ImageView) v.findViewById(R.id.medicineImageViewItem);
             medicineName = (TextView) v.findViewById(R.id.medicineNameListItem);
         }
+    }
+
+    public static float convertPixelsToDp(float px, Context context) {
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    public static float convertDpToPixel(float dp, Context context) {
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 }

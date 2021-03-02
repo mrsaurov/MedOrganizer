@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.beardedhen:androidbootstrap:2.3.1@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/androidbootstrap-2.3.1.aar/967abc008e6fea5605f401960956dfdf/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/androidbootstrap-2.3.1.aar/967abc008e6fea5605f401960956dfdf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/androidbootstrap-2.3.1.aar/967abc008e6fea5605f401960956dfdf/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beardedhen/androidbootstrap/2.3.1/cda876f6331f39662e17f572021114aab79bfd83/androidbootstrap-2.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
